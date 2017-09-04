@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
-import org.itstep.App;
 
 import lombok.extern.slf4j.Slf4j;
 
