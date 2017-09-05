@@ -1,4 +1,4 @@
-package org.itstep.encription;
+package org.itstep.crypto;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
