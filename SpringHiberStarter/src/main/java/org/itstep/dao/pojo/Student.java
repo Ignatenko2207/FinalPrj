@@ -14,5 +14,5 @@ import lombok.Data;
 @Table(name = "STUDENTS")
 public class Student extends User {
 	@Column(name = "STUDENT_GROUP", unique= true, nullable = false)
-	private Integer studentGroup;
+	private String studentGroup;
 }

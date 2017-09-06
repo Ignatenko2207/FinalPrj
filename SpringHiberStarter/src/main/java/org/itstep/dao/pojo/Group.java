@@ -17,11 +17,8 @@ import lombok.Data;
 @Table(name = "GROUPS")
 public class Group {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "GROUP_ID", nullable = false, unique = true)
-	private Long groupId;
 	@Column(name = "GROUP_NAME", unique= false, nullable = false)
 	private String groupName;
-	@Column(name = "COURSE_NAME", unique= true, nullable = false)
-	private String courseName;
+	@Column(name = "COURSE", unique= true, nullable = false)
+	private Integer course;
 }
