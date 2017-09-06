@@ -1,0 +1,24 @@
+package org.itstep.service;
+
+
+import org.itstep.dao.StudentDAO;
+import org.itstep.dao.pojo.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class StudentServiceImpl implements StudentService {
+
+
+    @Autowired
+    StudentDAO studentDAO;
+
+
+    @Override
+    public void createAndUpdate(Student student) {
+        studentDAO.saveAndFlush(student);
+    }
+
+
+
+}

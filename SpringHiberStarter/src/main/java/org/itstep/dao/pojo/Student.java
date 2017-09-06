@@ -16,12 +16,12 @@ import javax.persistence.Table;
 public class Student extends User {
 
     @Column(name = "GROUP_ID")
-    private String groupId;
+    private String group;
 
 
-    public Student(String login, String password, String firstName, String lastName, String groupId) {
+    public Student(String login, String password, String firstName, String lastName, String group) {
         super(login, password, firstName, lastName);
-        this.groupId = groupId;
+        this.group = group;
 
     }
 }
