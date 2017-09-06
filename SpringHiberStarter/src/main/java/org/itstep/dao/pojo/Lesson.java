@@ -9,19 +9,22 @@ import lombok.Setter;
 public class Lesson {
 
 
-    private String day;
-    private String timeStart;
-    private String timeFinish;
-    private String group;
-    private String title;
-    private String teacher;
 
-    public Lesson(String day, String timeStart, String timeFinish, String group, String title, String teacher) {
-        this.day = day;
+    private long timeStart;
+    private String duration;
+    private String group;
+    private String id;
+    private String subject;
+    private String room;
+
+    public Lesson( long timeStart, String duration, String group, String id, String subject, String room) {
         this.timeStart = timeStart;
-        this.timeFinish = timeFinish;
+        this.duration = duration;
         this.group = group;
-        this.title = title;
-        this.teacher = teacher;
+        this.id = id;
+        this.subject = subject;
+        this.room = room;
     }
+
+
 }
