@@ -4,14 +4,26 @@ package org.itstep.dao.pojo;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
 @Setter
 @Getter
+@Entity
+@Table(name = "GROUPS")
 public class Groups  {
-    private String groupId;
-    private String description;
+    @Id
+    @Column(name="NAME")
+    private String name;
+    @Column(name="COURCE")
+    private String course;
 
-    public Groups(String groupId, String description) {
-        this.groupId = groupId;
-        this.description = description;
+
+    public Groups(String name, String course) {
+        this.name = name;
+        this.course = course;
     }
 }
