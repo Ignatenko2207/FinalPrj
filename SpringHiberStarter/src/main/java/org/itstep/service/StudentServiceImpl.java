@@ -23,10 +23,22 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
+    public void delete(Student student){
+        studentDAO.delete(student);
+    }
+
+
+
+    @Override
     public List<Student> getAllByCourse(int course){
         return studentDAO.getAllByCourse(course);
     }
 
+
+    @Override
+    public  List<Student> getAllByGroup(String groups){
+        return studentDAO.getAllByGroup(groups);
+    }
 
 
 }
