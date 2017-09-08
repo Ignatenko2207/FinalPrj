@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentDAO extends JpaRepository<Student, String>{
+	
 	@Query(value = "SELECT * FROM STUDENTS WHERE GROUP = ?1", nativeQuery = true)
 	public List<Student> findStudentsByGroup(String group);
 	

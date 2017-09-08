@@ -7,11 +7,7 @@ import org.itstep.dao.pojo.Student;
 import org.springframework.data.jpa.repository.Query;
 
 public interface StudentSevice {
-//findAllStudentsByCourse
-//findStudentsByGroup
-//create and update
-//delete
-//get
+
 	public Student getStudent(String login);
 	
 	public Student createAndUpdateStudent(Student student);

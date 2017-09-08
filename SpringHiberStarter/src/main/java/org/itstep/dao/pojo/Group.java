@@ -17,8 +17,8 @@ import lombok.Data;
 @Table(name = "GROUPS")
 public class Group {
 	@Id
-	@Column(name = "GROUP_NAME", unique= false, nullable = false)
+	@Column(name = "GROUP_NAME", nullable = false)
 	private String groupName;
-	@Column(name = "COURSE", unique= true, nullable = false)
+	@Column(name = "COURSE", nullable = false)
 	private Integer course;
 }
