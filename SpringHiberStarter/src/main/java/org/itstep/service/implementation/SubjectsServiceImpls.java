@@ -1,4 +1,4 @@
-package org.itstep.service;
+package org.itstep.service.implementation;
 
 public class SubjectsServiceImpls {
 

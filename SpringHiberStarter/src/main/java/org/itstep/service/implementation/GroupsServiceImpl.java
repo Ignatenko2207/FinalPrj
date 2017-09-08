@@ -1,7 +1,8 @@
-package org.itstep.service;
+package org.itstep.service.implementation;
 
 import org.itstep.dao.GroupDAO;
 import org.itstep.dao.pojo.Group;
+import org.itstep.service.GroupsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class GroupsServiceImpl implements GroupsService {

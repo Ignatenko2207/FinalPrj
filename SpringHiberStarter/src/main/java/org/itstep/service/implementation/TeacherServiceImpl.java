@@ -1,9 +1,10 @@
-package org.itstep.service;
+package org.itstep.service.implementation;
 
 
 import org.itstep.dao.TeacherDAO;
 import org.itstep.dao.pojo.Student;
 import org.itstep.dao.pojo.Teacher;
+import org.itstep.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
