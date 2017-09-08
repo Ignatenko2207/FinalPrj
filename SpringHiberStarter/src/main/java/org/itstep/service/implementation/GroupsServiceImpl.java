@@ -25,16 +25,16 @@ public class GroupsServiceImpl implements GroupsService {
     }
 
     @Override
-    public Group delete(Group group) {
-        groupsDAO.delete(group);
-        return group;
+    public String delete(String groupName) {
+        groupsDAO.delete(groupName);
+       return groupName;
     }
 
 
     @Override
     public List<Group> getAllByCourse(int course){
-        groupsDAO.getAllByCourse(course);
-        return null;
+        return   groupsDAO.getAllByCourse(course);
+
     }
 
 

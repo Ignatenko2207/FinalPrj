@@ -10,7 +10,7 @@ public interface GroupsService {
 
    public Group createAndUpdate(Group group);
 
-  public  Group delete(Group group);
+  public String delete(String groupName);
 
     List<Group> getAllByCourse(int course);
 }
