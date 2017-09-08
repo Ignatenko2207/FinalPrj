@@ -22,10 +22,17 @@ public class GroupController {
 
 
     @PostMapping
-    public ResponseEntity<Group> createGroup(Group group){
-        Group groupDB = groupService.createAndUpdate(group);
-        if(groupDB==null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Group> createGroup(@RequestBody(required = true) Group group) {
+        Group groupDB = null;
+        if (groupService.isUnique(group)) {
+            groupDB = groupService.createAndUpdate(group);
+
+            if (groupDB == null) {
+                return new ResponseEntity<Group>(HttpStatus.BAD_REQUEST);
+            }
+            if (groupDB == null) {
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
         }
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -34,7 +41,7 @@ public class GroupController {
 
 
     @GetMapping(value = "/get-one")
-    public ResponseEntity<Group> getOneGroup(String groupName) {
+    public ResponseEntity<Group> getOneGroup(@RequestParam(required = true) String groupName) {
         Group groupDB = groupService.getGroup(groupName);
         if(groupDB == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -42,7 +49,7 @@ public class GroupController {
         return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/get-groups")
+    @GetMapping(value = "/get-grouplist")
     public ResponseEntity<List<Group>> getOneGroup(int course) {
         List<Group> groupList = groupService.getAllByCourse(course);
         return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);

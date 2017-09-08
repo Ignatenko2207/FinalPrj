@@ -8,4 +8,6 @@ import java.util.List;
 public interface GroupDAO  extends JpaRepository<Group,String>{
 
    public List<Group> getAllByCourse(int courese);
+
+
 }

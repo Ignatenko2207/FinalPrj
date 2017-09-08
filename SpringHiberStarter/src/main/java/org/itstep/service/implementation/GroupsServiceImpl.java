@@ -36,6 +36,15 @@ public class GroupsServiceImpl implements GroupService {
         return   groupsDAO.getAllByCourse(course);
 
     }
+    @Override
+    public boolean isUnique (Group group){
+        if (groupsDAO.getOne(group.getGroupName())!=null){
+            return false;
+        }
+
+
+
+    }
 
 
 

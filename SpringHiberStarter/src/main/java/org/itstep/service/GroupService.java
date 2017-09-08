@@ -13,4 +13,6 @@ public interface GroupService {
   public String delete(String groupName);
 
     List<Group> getAllByCourse(int course);
+
+    boolean isUnique(Group group);
 }
