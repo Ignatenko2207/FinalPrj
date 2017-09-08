@@ -2,13 +2,13 @@ package org.itstep.service.implementation;
 
 import org.itstep.dao.GroupDAO;
 import org.itstep.dao.pojo.Group;
-import org.itstep.service.GroupsService;
+import org.itstep.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class GroupsServiceImpl implements GroupsService {
+public class GroupsServiceImpl implements GroupService {
 
     @Autowired
     GroupDAO groupsDAO;

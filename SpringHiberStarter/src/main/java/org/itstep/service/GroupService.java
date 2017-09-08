@@ -4,7 +4,7 @@ import org.itstep.dao.pojo.Group;
 
 import java.util.List;
 
-public interface GroupsService {
+public interface GroupService {
 
     public Group getGroup(String groupname);
 
