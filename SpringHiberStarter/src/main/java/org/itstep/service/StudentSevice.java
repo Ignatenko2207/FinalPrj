@@ -14,9 +14,7 @@ public interface StudentSevice {
 	
 	public void deleteStudent(Student student);
 
-	@Query(value = "SELECT * FROM STUDENTS WHERE GROUP = ?1", nativeQuery = true)
 	public List<Student> findStudentsByGroup(String group);
 	
-	@Query(value = "SELECT * FROM STUDENTS INNER JOIN Groups ON COURSE = ?1", nativeQuery = true)
 	public List<Student> findAllStudentsByCourse(Integer course);
 }
