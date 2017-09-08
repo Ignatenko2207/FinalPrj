@@ -30,9 +30,12 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherDAO.getAllBySubject(subject);
     }
 
+
     @Override
-    public List<Teacher> getAllByGroup(String groups) {
-        return teacherDAO.getAllByGroup(groups);
+    public List<Teacher> getAllByLogin(String login){
+     return teacherDAO.getByLogin(login);
     }
+
+
 
 }

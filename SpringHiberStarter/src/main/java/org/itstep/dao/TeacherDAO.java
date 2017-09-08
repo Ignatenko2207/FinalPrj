@@ -13,6 +13,6 @@ public interface TeacherDAO extends JpaRepository<Teacher,String> {
 
     public List<Teacher> getAllBySubject(String subject);
 
-    public List<Teacher> getAllByCourse(int course);   // SQL join request
+    public List<Teacher> getByLogin(String login);   // SQL join request
 
 }

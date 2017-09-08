@@ -14,12 +14,12 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "LESSON")
-public class Lessons {
+public class Lesson {
 
     @Id
     @Column(name="ID")
     private String id;
-    @Column(name = "StartTime")
+    @Column(name = "START_TIME")
     private long startTime;
     @Column(name="DURATION")
     private String duration;
@@ -32,7 +32,7 @@ public class Lessons {
     @Column(name = "TEACHER")
     private String teacher;
 
-    public Lessons(long startTime, String duration, String group, String id, String subject, String room, String teacher) {
+    public Lesson(long startTime, String duration, String group, String id, String subject, String room, String teacher) {
         this.startTime = startTime;
         this.duration = duration;
         this.group = group;

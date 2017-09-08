@@ -16,7 +16,9 @@ public interface TeacherService {
 
     List<Teacher> getAllBySubject(String subject);
 
-    List<Teacher> getAllByGroup(String groups);
+    List<Teacher> getAllByLogin(String login);
+
+
 
 
 }

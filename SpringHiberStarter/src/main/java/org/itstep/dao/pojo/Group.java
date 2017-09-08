@@ -14,16 +14,16 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name = "GROUPS")
-public class Groups  {
+public class Group {
     @Id
-    @Column(name="NAME")
-    private String name;
+    @Column(name="GROUP_NAME")
+    private String groupName;
     @Column(name="COURCE")
-    private String course;
+    private int course;
 
 
-    public Groups(String name, String course) {
-        this.name = name;
+    public Group(String name, int course) {
+        this.groupName = name;
         this.course = course;
     }
 }
