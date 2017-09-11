@@ -17,22 +17,23 @@ import javax.persistence.Table;
 public class Lesson {
 
     @Id
-    @Column(name="ID")
-    private String id;
-    @Column(name = "START_TIME")
+    @Column(name="ID" ,nullable = false)
+    private long id;
+    @Column(name = "START_TIME",nullable = false)
     private long startTime;
-    @Column(name="DURATION")
+    @Column(name="DURATION" ,nullable = false)
     private String duration;
-    @Column(name = "GROUP")
+    @Column(name = "GROUP" ,nullable = false)
     private String group;
-    @Column(name ="SUBJECT")
+    @Column(name ="SUBJECT" ,nullable = false)
     private String subject;
-    @Column(name = "ROOM")
+    @Column(name = "ROOM" ,nullable = false)
     private String room;
-    @Column(name = "TEACHER")
+    @Column(name = "TEACHER" ,nullable = false)
     private String teacher;
 
-    public Lesson(long startTime, String duration, String group, String id, String subject, String room, String teacher) {
+
+    public Lesson(long startTime, String duration, String group, long id, String subject, String room, String teacher) {
         this.startTime = startTime;
         this.duration = duration;
         this.group = group;

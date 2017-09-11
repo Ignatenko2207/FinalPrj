@@ -13,66 +13,121 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+
 @Controller
+
 @RequestMapping(value = "/group")
+
 public class GroupController {
 
+
+
     @Autowired
+
     GroupService groupService;
 
 
+
     @PostMapping
-    public ResponseEntity<Group> createGroup(@RequestBody(required = true) Group group) {
-        Group groupDB = null;
-        if (groupService.isUnique(group)) {
-            groupDB = groupService.createAndUpdate(group);
 
-            if (groupDB == null) {
-                return new ResponseEntity<Group>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Group> createGroup(@RequestBody Group group) {
+
+        if(groupService.isUnique(group)) {
+
+            Group groupDB = groupService.createAndUpdateGroup(group);
+
+            if(groupDB == null) {
+
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
             }
-            if (groupDB == null) {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
-            }
+
+            return new ResponseEntity<Group>(groupDB, HttpStatus.CREATED);
+
         }
-        return new ResponseEntity(HttpStatus.CREATED);
+
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+    }
+
+
+
+    @PutMapping
+
+    public ResponseEntity<Group> updateGroup(Group group) {
+
+        if(!groupService.isUnique(group)) {
+
+            Group groupDB = groupService.createAndUpdateGroup(group);
+
+            if(groupDB == null) {
+
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+            }
+
+            return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+
     }
 
 
 
 
-    @GetMapping(value = "/get-one")
+
+    @GetMapping(value = "/get-group")
+
     public ResponseEntity<Group> getOneGroup(@RequestParam(required = true) String groupName) {
+
         Group groupDB = groupService.getGroup(groupName);
+
         if(groupDB == null) {
+
             return new ResponseEntity(HttpStatus.NOT_FOUND);
+
         }
+
         return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
+
     }
+
+
 
     @GetMapping(value = "/get-grouplist")
+
     public ResponseEntity<List<Group>> getOneGroup(int course) {
-        List<Group> groupList = groupService.getAllByCourse(course);
+
+        List<Group> groupList = groupService.findAllByCourse(course);
+
         return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);
 
+
+
     }
-
-
 
 
 
     @DeleteMapping
-    public ResponseEntity deleteGroup(String groupName){
+
+    public ResponseEntity deleteGroup(String groupName) {
 
         try {
-            groupService.delete(groupName);
-        }catch(Exception e){
+
+            groupService.deleteGroup(groupName);
+
+        } catch (Exception e) {
+
             log.error(e.getMessage());
-            return  new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
         }
-        return  new ResponseEntity(HttpStatus.OK);
+
+        return new ResponseEntity(HttpStatus.OK);
 
     }
-
-
 
 }

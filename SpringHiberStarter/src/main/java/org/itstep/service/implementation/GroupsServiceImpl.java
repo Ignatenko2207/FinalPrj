@@ -8,43 +8,70 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class GroupsServiceImpl implements GroupService {
+public class GroupsServiceImpl implements GroupService{
+
+
 
     @Autowired
-    GroupDAO groupsDAO;
+
+    GroupDAO groupDAO;
+
+
 
     @Override
+
     public Group getGroup(String groupName) {
-        return groupsDAO.getOne(groupName); //getOne делает выборку из одного елемента базы по исходному указанному типу данных
+
+        return groupDAO.getOne(groupName);
+
     }
 
-    @Override
-    public Group createAndUpdate(Group group) {
-        groupsDAO.saveAndFlush(group);
-        return group;
-    }
-
-    @Override
-    public String delete(String groupName) {
-        groupsDAO.delete(groupName);
-       return groupName;
-    }
 
 
     @Override
-    public List<Group> getAllByCourse(int course){
-        return   groupsDAO.getAllByCourse(course);
+
+    public Group createAndUpdateGroup(Group group) {
+
+        return groupDAO.saveAndFlush(group);
 
     }
+
+
+
     @Override
-    public boolean isUnique (Group group){
-        if (groupsDAO.getOne(group.getGroupName())!=null){
+
+    public void deleteGroup(String groupName) {
+
+        groupDAO.delete(groupName);
+
+    }
+
+
+
+    @Override
+
+    public List<Group> findAllByCourse(int course) {
+
+        return groupDAO.findAllByCourse(course);
+
+    }
+
+
+
+    @Override
+
+    public boolean isUnique(Group group) {
+
+        if(groupDAO.getOne(group.getGroupName()) != null) {
+
             return false;
+
         }
 
-
+        return true;
 
     }
+
 
 
 

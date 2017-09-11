@@ -10,4 +10,5 @@ public interface GroupDAO  extends JpaRepository<Group,String>{
    public List<Group> getAllByCourse(int courese);
 
 
+    List<Group> findAllByCourse(int course);
 }

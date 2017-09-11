@@ -5,14 +5,15 @@ import org.itstep.dao.pojo.Group;
 import java.util.List;
 
 public interface GroupService {
+    Group getGroup(String groupName);
 
-    public Group getGroup(String groupname);
+    Group createAndUpdateGroup(Group group);
 
-   public Group createAndUpdate(Group group);
+    void deleteGroup(String groupName);
 
-  public String delete(String groupName);
-
-    List<Group> getAllByCourse(int course);
+    List<Group> findAllByCourse(int course);
 
     boolean isUnique(Group group);
 }
+
+
