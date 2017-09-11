@@ -15,19 +15,19 @@ import lombok.Data;
 public class Lesson {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "LESSON_ID", unique= true, nullable = false)
+	@Column(name = "ID", unique= true, nullable = false)
 	private Long lessonId;
-	@Column(name = "LESSON_START", nullable = false)
+	@Column(name = "START_TIME", nullable = false)
 	private Long lessonStart;
-	@Column(name = "LESSON_LENGTH", nullable = false)
+	@Column(name = "LENGTH", nullable = false)
 	private Long length;
-	@Column(name = "LESSON_CREATOR", nullable = false)
-	private Teacher teacher;
-	@Column(name = "LESSON_GROUP", nullable = false)
-	private Group group;
-	@Column(name = "LESSON_ROOM", length = 4000, nullable = false)
+	@Column(name = "TEACHER", nullable = false)
+	private String teacher;
+	@Column(name = "GROUP", nullable = false)
+	private String group;
+	@Column(name = "ROOM", nullable = false)
 	private String room;
-	@Column(name = "LESSON_SUBJECT", nullable = false)
+	@Column(name = "SUBJECT", nullable = false)
 	private String subject;
 	
 	
