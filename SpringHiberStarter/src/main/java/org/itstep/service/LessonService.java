@@ -15,7 +15,7 @@ public interface LessonService {
 
 
  //   @Query(value = "SELECT * FROM LESSONS WHERE GROUP = ?1 AND STARTTIME = ?2",nativeQuery = true)
-    List<Lesson> getOneByGroupAndStartTime (String group, Long startTime);
+    Lesson  getOneByGroupAndStartTime (String group, Long startTime);
 
    // @Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND STARTTIME = ?2",nativeQuery = true)
     List<Lesson> getLessonsForGroupForDay (String  group,Long startDay);

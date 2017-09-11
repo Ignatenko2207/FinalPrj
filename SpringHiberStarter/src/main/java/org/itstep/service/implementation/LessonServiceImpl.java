@@ -1,6 +1,6 @@
 package org.itstep.service.implementation;
 
-import org.itstep.dao.LessonsDAO;
+import org.itstep.dao.LessonDAO;
 import org.itstep.dao.pojo.Lesson;
 import org.itstep.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,8 @@ import java.util.List;
 public class LessonServiceImpl implements LessonService {
 
 
-
     @Autowired
-    LessonsDAO lessonsDAO;
+    LessonDAO lessonDAO;
 
     @Override
     public Lesson saveAndUpdate(Lesson lesson) {
@@ -24,7 +23,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public void delete(Long id) {
-            lessonsDAO.delete(id);
+        lessonDAO.delete(id);
     }
 
     @Override
@@ -69,6 +68,12 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public boolean isUnique(Lesson lesson) {
-        return false;
+
+            if (lessonDAO.getOneBySubjectAndStartTime(lesson.getSubject(), lesson.getStartTime()) != null){
+              return false;
+            }
+        return true;
     }
+
 }
+

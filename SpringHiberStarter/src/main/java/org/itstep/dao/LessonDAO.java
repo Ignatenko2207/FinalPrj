@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public interface LessonsDAO extends JpaRepository<Lesson,Long> {
+public interface LessonDAO extends JpaRepository<Lesson,Long> {
 
 
     @Query(value = "SELECT * FROM LESSONS WHERE GROUP = ?1 AND STARTTIME = ?2",nativeQuery = true)
@@ -32,5 +32,8 @@ public interface LessonsDAO extends JpaRepository<Lesson,Long> {
     List<Lesson> getLessonsForTeacherForDay (String  group,Long startDay,Long endDay);
 
     List<Lesson> getLessonsForTeacherForWeek (int  course,Long startWeek,Long endWeek);
+
+    @Query(value = "SELECT * FROM LESSONS WHERE SUBJECT = ?1 AND STARTTIME = ?2",nativeQuery = true)
+    List<Lesson> getOneBySubjectAndStartTime(String subject , Long startTime);
 
 }
