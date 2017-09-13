@@ -28,4 +28,8 @@ public class Teacher{
 	
 	@Column(name = "TEACHER_SUBJECT", nullable = false)
 	private String subject;
+	
+	public Teacher() {
+		// TODO Auto-generated constructor stub
+	}
 }

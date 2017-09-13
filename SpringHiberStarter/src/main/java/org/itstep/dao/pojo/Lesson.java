@@ -40,4 +40,8 @@ public class Lesson{
 	
 	@Column(name = "SUBJECT", nullable = false)
 	private String subject;
+	
+	public Lesson() {
+		// TODO Auto-generated constructor stub
+	}
 }

@@ -24,4 +24,8 @@ public class Group{
 	
 	@Column(name = "COURSE", nullable = false)
 	private Integer course;
+	
+	public Group() {
+		// TODO Auto-generated constructor stub
+	}
 }

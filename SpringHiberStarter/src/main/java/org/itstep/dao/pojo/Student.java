@@ -29,4 +29,8 @@ public class Student{
 	
 	@Column(name = "STUDENT_GROUP", nullable = false)
 	private String studentGroup;
+	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
 }
