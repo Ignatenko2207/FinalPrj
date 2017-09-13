@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentDAO extends JpaRepository<Student, String>{
 	
-	@Query(value = "SELECT * FROM STUDENTS WHERE GROUP = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM STUDENTS WHERE STUDENT_GROUP = ?1", nativeQuery = true)
 	public List<Student> findStudentsByGroup(String group);
 	
-	@Query(value = "SELECT * FROM STUDENTS INNER JOIN Groups ON COURSE = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM STUDENTS INNER JOIN ON "
+			+ "STUDENT_GROUP =  GROUPS.GROUP_NAME WHERE GROUPS.COURSE = ?1", nativeQuery = true)
 	public List<Student> findAllStudentsByCourse(Integer course);
 }
