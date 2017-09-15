@@ -19,6 +19,6 @@ public interface StudentDAO  extends JpaRepository<Student,String>{
 
     public List<Student> getAllByCourse(int course);   // SQL join request
 
-
+    public List<Student> getByLogin(String login);
 
 }

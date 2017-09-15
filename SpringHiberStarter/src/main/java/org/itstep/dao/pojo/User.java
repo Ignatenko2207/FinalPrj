@@ -1,13 +1,14 @@
-package org.itstep.dao.pojo;
+/*package org.itstep.dao.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
 
 
-import org.springframework.data.annotation.Id;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Setter
@@ -25,24 +26,14 @@ public class User {
     @Column(name="LEAST_NAME")
     private String lastName;
 
+    @Column(name = "GROUP_ID")
+    private String group;
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public User() {
+    }
 
     public User(String login, String password, String firstName, String lastName) {
         this.login = login;
@@ -50,5 +41,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-}
 
+}
+ */
