@@ -1,5 +1,7 @@
 package org.itstep.dao.pojo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,12 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "LESSONS")
-public class Lesson {
+public class Lesson implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2508478196061750143L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", unique= true, nullable = false)
@@ -23,12 +31,13 @@ public class Lesson {
 	private Long length;
 	@Column(name = "TEACHER", nullable = false)
 	private String teacher;
-	@Column(name = "GROUP", nullable = false)
+	@Column(name = "GROUP_NAME", nullable = false)
 	private String group;
 	@Column(name = "ROOM", nullable = false)
 	private String room;
 	@Column(name = "SUBJECT", nullable = false)
 	private String subject;
-	
+	public Lesson() {
+	}
 	
 }

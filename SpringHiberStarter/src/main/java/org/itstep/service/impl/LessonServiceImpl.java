@@ -36,47 +36,28 @@ public class LessonServiceImpl implements LessonService{
 	}
 
 	@Override
-	public List<Lesson> getLessonsForGroupForDay(String group, Long startDay, Long endDay) {
+	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Lesson> getLessonsForCourseForDay(Integer course, Long startDay, Long endDay) {
+	public List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Lesson> getLessonsForGroupForWeek(String group, Long startWeek, Long endWeek) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Lesson> getLessonsForCourseForWeek(Integer course, Long startWeek, Long endWeek) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Lesson> getLessonsForTeacherForDay(String teacher, Long startDay, Long endDay) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Lesson> getLessonsForTeacherForWeek(String teacher, Long startWeek, Long endWeek) {
+	public List<Lesson> getLessonsForPeriod(String teacher, Long start, Long end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isUnique(Lesson lesson) {
-		if(lessonDAO.getOneBySubjectAndStartTime(lesson.getSubject(), lesson.getLessonStart()) != null) {
-			return false;
-		}
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
+
 
 }

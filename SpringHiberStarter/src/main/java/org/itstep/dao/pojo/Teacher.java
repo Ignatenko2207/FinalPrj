@@ -6,13 +6,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.Spring;
 
-import lombok.Data;
+import com.zaxxer.hikari.HikariConfig;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 @Entity
 @Table(name = "TEACHERS")
-public class Teacher extends User {
+public class Teacher extends User  {
+	private static final long serialVersionUID = -8271044135754385480L;
+	
 	@Column(name = "TEACHER_SUBJECT", unique= true, nullable = false)
 	private String subject;
+	
+	public Teacher() {
+	}
 }
