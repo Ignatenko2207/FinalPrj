@@ -27,8 +27,6 @@ public interface LessonDAO extends JpaRepository<Lesson,Long> {
 
 
 
-    List<Lesson> getOneByTeacherAndStartTime (String teacher,Long startTime);
-
 
     @Query(value = "SELECT * FROM LESSON0S  INNER JOIN GROUPS ON LESSONS.GROUP = GROUP.GROUP_NAME WHERE GROUP.COURSE = ?1  AND   LESSONS.START_DAY  > ?2 AND LESSONS.START_DAY < ?3 ",nativeQuery = true)
     List<Lesson> getLessonsForTeacherForPeriod (int  course,Long startWeek,Long endWeek);

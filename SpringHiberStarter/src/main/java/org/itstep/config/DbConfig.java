@@ -61,7 +61,7 @@ public class DbConfig extends HikariConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "org.itstep.dao" });
+		em.setPackagesToScan(new String[] { "org.itstep" });
 		em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		em.setJpaProperties(additionalProperties());
 		return em;
