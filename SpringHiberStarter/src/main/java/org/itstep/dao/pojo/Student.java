@@ -31,6 +31,5 @@ public class Student{
 	private String studentGroup;
 	
 	public Student() {
-		// TODO Auto-generated constructor stub
 	}
 }
