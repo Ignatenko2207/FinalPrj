@@ -17,27 +17,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping(value = "/group")
 public class GroupController {
 
 	@Autowired
 	GroupService groupService;
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping
 	public ResponseEntity<Group> createGroup(@RequestBody Group group) {
 		if(groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
 			if(groupDB == null) {
-				return new ResponseEntity(HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<Group>(HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Group>(groupDB, HttpStatus.CREATED);
 		}
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Group>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

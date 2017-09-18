@@ -14,5 +14,5 @@ public interface StudentSevice {
 
 	public List<Student> findStudentsByGroup(String group);
 	
-	public List<Student> findAllStudentsByCourse(Integer course);
+	public List<Student> findAllStudentsByCourse(int course);
 }

@@ -13,7 +13,6 @@
   <properties>
 
 		<jdk.version>1.8</jdk.version>
-        <jre.version>1.8.0_144</jre.version>
         
         <product.version>0.1-SNAPSHOT</product.version>
         <lib.property>lib</lib.property>
