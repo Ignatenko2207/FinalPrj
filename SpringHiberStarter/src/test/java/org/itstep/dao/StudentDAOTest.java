@@ -23,10 +23,13 @@ public class StudentDAOTest {
   Student student = new Student();
   student.setLogin("student1");
   student.setPassword("123456");
-  student.setFullName("Alex Aheyev");
+  student.setFirstName("Alex");
+  student.setLastName("lastName");
   student.setStudentGroup("someGroup");
   Student studentDB = studentDAO.save(student);
   assertNotNull(studentDB);
+  Student checkedStudent = studentDAO.findOne(studentDB.getLogin());
+  assertEquals("Alex", checkedStudent.getFirstName());
   studentDAO.delete(studentDB.getLogin());
   
  }
