@@ -26,40 +26,22 @@ import com.zaxxer.hikari.HikariConfig;
 @ConfigurationProperties
 public class DbConfig extends HikariConfig {
 
-	@Value(value = "${spring.datasource.hikari.username}")
+	@Value(value = "${username}")
 	private String username;
 
-	@Value(value = "${spring.datasource.hikari.password}")
+	@Value(value = "${password}")
 	private String password;
 
-	@Value(value = "${spring.datasource.hikari.data-source-class-name}")
-	private String dataSourceClassName;
 
-	@Value(value = "${spring.datasource.hikari.driverClassName}")
-	private String dataSourceDriverName;
-	
-	@Value(value = "${spring.datasource.hikari.database-name}")
-	private String databaseName;
-//
-//	@Value(value = "${spring.datasource.hikari.driver-type}")
-//	private Integer driverType;
+	@Value(value = "${driver-class-name}")
+	private String driverClassName;
 
-	@Value(value = "${spring.datasource.hikari.url}")
+	@Value(value = "${url}")
 	private String url;
 
-//	@Value(value = "${spring.datasource.hikari.schema}")
-//	private String schema;
+	@Value(value = "${db-option}")
+	private String dbOption;
 
-	@Value(value = "${spring.datasource.hikari.hbm2ddl.auto}")
-	private String hbm2Ddl;
-
-	@Value(value = "${dialect}")
-	private String dialect;
-	
-
-	@Value(value = "${schema}")
-	private String schema;
-	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -77,17 +59,15 @@ public class DbConfig extends HikariConfig {
 
 	Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", hbm2Ddl);
-		properties.setProperty("hibernate.dialect", dialect);
+		properties.setProperty("hibernate.hbm2ddl.auto", dbOption);
 		return properties;
 	}
 
     @Bean
     public DataSource dataSource() {
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(dataSourceDriverName);
+        dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
-        dataSource.setSchema(schema);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return dataSource;
