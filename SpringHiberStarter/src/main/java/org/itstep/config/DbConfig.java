@@ -16,22 +16,20 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import com.zaxxer.hikari.HikariConfig;
 
 @Configuration
 @EnableJpaRepositories("org.itstep.dao")
 @EnableTransactionManagement
 @EnableAsync
-@EntityScan("org.itstep")
+@EntityScan("org.itstep.dao.pojo")
 @ConfigurationProperties
-public class DbConfig extends HikariConfig {
+public class DbConfig{
 
 	@Value(value = "${username}")
 	private String username;
 
 	@Value(value = "${password}")
 	private String password;
-
 
 	@Value(value = "${driver-class-name}")
 	private String driverClassName;

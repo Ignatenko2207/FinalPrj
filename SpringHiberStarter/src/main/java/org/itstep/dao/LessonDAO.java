@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LessonDAO extends JpaRepository<Lesson, Long> {
 
-	@Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME = ?1 AND START_TIME = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME=?1 AND START_TIME=?2", nativeQuery = true)
 	Lesson getOneByGroupAndStartTime(String group, Long startTime);
 	
-	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND START_TIME = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER=?1 AND START_TIME=?2", nativeQuery = true)
 	Lesson getOneByTeacherAndStartTime(String teacher, Long startTime);
 	
 	@Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME = ?1 AND START_TIME = ?2", nativeQuery = true)
@@ -25,5 +25,4 @@ public interface LessonDAO extends JpaRepository<Lesson, Long> {
 
 	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND START_DAY>?1 AND END_DAY<?3",  nativeQuery = true)
 	List<Lesson> getLessonsForPeriod(String teacher, Long start, Long end);
-	
 }

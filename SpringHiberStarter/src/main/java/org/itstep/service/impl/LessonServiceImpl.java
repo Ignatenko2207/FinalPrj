@@ -48,16 +48,16 @@ public class LessonServiceImpl implements LessonService{
 	}
 
 	@Override
-	public List<Lesson> getLessonsForPeriod(String teacher, Long start, Long end) {
+	public List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public boolean isUnique(Lesson lesson) {
-		// TODO Auto-generated method stub
-		return false;
+		if(lessonDAO.getOneByTeacherAndStartTime(lesson.getTeacher(), lesson.getLessonStart()) != null) {
+			return false;
+		}
+		return true;
 	}
-
-
 }
