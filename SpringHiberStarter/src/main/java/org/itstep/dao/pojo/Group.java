@@ -19,7 +19,7 @@ public class Group{
 	private String groupName;
 	
 	@Column(name = "COURSE", nullable = false)
-	private Integer course;
+	private int course;
 
 	public Group() {
 	}

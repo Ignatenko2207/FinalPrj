@@ -28,8 +28,7 @@ public class GroupController {
 	@Autowired
 	GroupService groupService;
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Group> createGroup(@RequestBody Group group) {
 		if(groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
@@ -41,8 +40,7 @@ public class GroupController {
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 	
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Group> updateGroup(@RequestBody Group group) {
 		if(!groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
