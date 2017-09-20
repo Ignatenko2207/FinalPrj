@@ -23,7 +23,7 @@ public class LessonController {
 	@Autowired
 	LessonService lessonService;
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping()
 	public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson) {
 		if (lessonService.isUnique(lesson)) {
 			Lesson lessonDB = lessonService.saveAndUpdate(lesson);
@@ -32,7 +32,7 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping()
 	public ResponseEntity<Lesson> updateLesson(@RequestBody Lesson lesson) {
 		if (!lessonService.isUnique(lesson)) {
 			Lesson lessonDB = lessonService.saveAndUpdate(lesson);

@@ -41,7 +41,7 @@ public class GroupController {
 		return new ResponseEntity<Group>(HttpStatus.NOT_FOUND);
 	}
 	
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping()
 	public ResponseEntity<Group> updateGroup(@RequestBody Group group) {
 		if(!groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);

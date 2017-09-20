@@ -3,7 +3,6 @@ package org.itstep.service;
 import java.util.List;
 
 import org.itstep.dao.pojo.Lesson;
-import org.springframework.data.jpa.repository.Query;
 
 public interface LessonService {
 
