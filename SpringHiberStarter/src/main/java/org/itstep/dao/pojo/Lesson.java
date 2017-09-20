@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Lesson{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", nullable = false)
 	private Long lessonId;
 	
