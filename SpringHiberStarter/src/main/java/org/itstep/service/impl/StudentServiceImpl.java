@@ -36,7 +36,7 @@ public class StudentServiceImpl implements StudentSevice{
 	}
 
 	@Override
-	public List<Student> findAllStudentsByCourse(Integer course){
+	public List<Student> findAllStudentsByCourse(int course){
 		return studentDAO.findAllStudentsByCourse(course);
 	}
 	

@@ -13,7 +13,6 @@
   <properties>
 
 		<jdk.version>1.8</jdk.version>
-        <jre.version>1.8.0_144</jre.version>
         
         <product.version>0.1-SNAPSHOT</product.version>
         <lib.property>lib</lib.property>
@@ -48,7 +47,7 @@
                 
         <servlet.version>3.1.0</servlet.version>
         
-        <h2.version>1.4.194</h2.version>
+        <h2.version>1.4.196</h2.version>
         <postgresql.version>42.1.1</postgresql.version>
         
 		<gson.version>2.3.1</gson.version>
@@ -59,7 +58,7 @@
         <swagger.version>2.6.1</swagger.version>
         
         <springockito.version>1.0.9</springockito.version>
-        <mockito.version>2.8.47</mockito.version>
+        <mockito.version>2.10.0</mockito.version>
         <junit.version>4.12</junit.version>
     </properties>
 
@@ -229,12 +228,14 @@
     		<artifactId>HikariCP</artifactId>
     		<version>2.6.1</version>
 		</dependency>
-	
+		
 		<dependency>
     		<groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
-    		<version>${postgresql.version}</version>
+    		<version>42.1.1</version>
 		</dependency>
+
+	
   		<dependency>
     		<groupId>com.h2database</groupId>
     		<artifactId>h2</artifactId>

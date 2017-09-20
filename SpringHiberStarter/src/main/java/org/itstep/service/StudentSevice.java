@@ -2,9 +2,7 @@ package org.itstep.service;
 
 import java.util.List;
 
-import org.apache.tomcat.jni.User;
 import org.itstep.dao.pojo.Student;
-import org.springframework.data.jpa.repository.Query;
 
 public interface StudentSevice {
 
@@ -16,5 +14,5 @@ public interface StudentSevice {
 
 	public List<Student> findStudentsByGroup(String group);
 	
-	public List<Student> findAllStudentsByCourse(Integer course);
+	public List<Student> findAllStudentsByCourse(int course);
 }
