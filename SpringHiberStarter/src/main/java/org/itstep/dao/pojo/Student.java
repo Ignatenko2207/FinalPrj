@@ -8,8 +8,10 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
+
+
 @Getter
+@Setter
 @Entity
 @Table(name = "STUDENTS")
 public class Student{
@@ -24,13 +26,13 @@ public class Student{
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 	
-	@Column(name = "LAST_NAME", nullable = false)
+	@Column(name = "LAST_NAME")
 	private String lastName;
 	
 	@Column(name = "STUDENT_GROUP", nullable = false)
 	private String studentGroup;
 	
 	public Student() {
-		// TODO Auto-generated constructor stub
+		
 	}
 }

@@ -23,13 +23,13 @@ public class Teacher{
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 	
-	@Column(name = "LAST_NAME", nullable = false)
+	@Column(name = "LAST_NAME")
 	private String lastName;
 	
 	@Column(name = "TEACHER_SUBJECT", nullable = false)
 	private String subject;
 	
 	public Teacher() {
-		// TODO Auto-generated constructor stub
+		
 	}
 }

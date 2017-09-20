@@ -39,7 +39,7 @@
         <commons.logging.version>1.2</commons.logging.version>
 		<apache.commons.net.version>3.6</apache.commons.net.version>
 		
-        <lombok.version>1.16.16</lombok.version>
+        <lombok.version>1.16.18</lombok.version>
         <hikari.version>2.6.0</hikari.version>
         
         <spring.version>4.3.7.RELEASE</spring.version>
@@ -223,18 +223,14 @@
     		<artifactId>jackson-datatype-hibernate5</artifactId>
     		<version>2.8.8</version>
 		</dependency>
-
-		<dependency>
-    		<groupId>com.zaxxer</groupId>
-    		<artifactId>HikariCP</artifactId>
-    		<version>2.6.1</version>
-		</dependency>
 	
 		<dependency>
-    		<groupId>org.postgresql</groupId>
-    		<artifactId>postgresql</artifactId>
-    		<version>${postgresql.version}</version>
-		</dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.0.0</version>
+</dependency>
+
+		
   		<dependency>
     		<groupId>com.h2database</groupId>
     		<artifactId>h2</artifactId>

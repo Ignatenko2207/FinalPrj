@@ -1,8 +1,5 @@
 package org.itstep.dao.pojo;
 
-
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,7 +7,6 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
-
 
 @Setter
 @Getter
@@ -26,6 +22,6 @@ public class Group{
 	private Integer course;
 	
 	public Group() {
-		// TODO Auto-generated constructor stub
+		
 	}
 }

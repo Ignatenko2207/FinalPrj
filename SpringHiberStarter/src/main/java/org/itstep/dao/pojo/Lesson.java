@@ -1,6 +1,5 @@
 package org.itstep.dao.pojo;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

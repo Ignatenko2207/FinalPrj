@@ -39,8 +39,14 @@ public class StudentServiceImpl implements StudentSevice{
 	public List<Student> findAllStudentsByCourse(Integer course){
 		return studentDAO.findAllStudentsByCourse(course);
 	}
-	
+
+	@Override
+	public boolean isUnique(Student student) {
+		if(studentDAO.getOne(student.getLogin())!=null){
+		return false;
+	}
+	return true;
 		
-		
+	}
 	
 }

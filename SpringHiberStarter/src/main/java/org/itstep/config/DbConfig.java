@@ -32,8 +32,8 @@ public class DbConfig{
 	private String password;
 
 	@Value(value = "${driver-class-name}")
-	private String dataSourceDriverName;
-	
+	private String driverClassName;
+
 	@Value(value = "${url}")
 	private String url;
 
@@ -44,7 +44,7 @@ public class DbConfig{
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "org.itstep" });
+		em.setPackagesToScan(new String[] { "org.itstep.dao.pojo" });
 		em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		em.setJpaProperties(additionalProperties());
 		return em;
@@ -64,7 +64,7 @@ public class DbConfig{
     @Bean
     public DataSource dataSource() {
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(dataSourceDriverName);
+        dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
