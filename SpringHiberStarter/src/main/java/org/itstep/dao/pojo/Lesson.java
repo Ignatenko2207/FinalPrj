@@ -22,7 +22,7 @@ public class Lesson implements Serializable  {
 	 */
 	private static final long serialVersionUID = 2508478196061750143L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "ID", unique= true, nullable = false)
 	private Long lessonId;
 	@Column(name = "START_TIME", nullable = false)

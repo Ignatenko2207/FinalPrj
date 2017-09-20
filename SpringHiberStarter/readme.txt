@@ -1,3 +1,2 @@
 DB: POSTGRESQL !!!
-v1.1
-IT WORKS!!!
+v1.2

@@ -9,6 +9,8 @@ public interface LessonService {
 
 	Lesson saveAndUpdate(Lesson lesson);
 	
+	Lesson getLesson(Long lessonId);
+	
 	void delete(Long id);
 	
 	Lesson getOneByGroupAndStartTime(String group, Long startTime);
@@ -19,7 +21,7 @@ public interface LessonService {
 	
 	List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end);
 
-	List<Lesson> getLessonsForPeriod(String teacher, Long start, Long end);
+	List<Lesson> getLessonsForPeriod(Long start, Long end);
 	
 	public boolean isUnique(Lesson lesson);
 }
