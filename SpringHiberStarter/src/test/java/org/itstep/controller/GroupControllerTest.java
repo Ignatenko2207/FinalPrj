@@ -54,6 +54,7 @@ public class GroupControllerTest {
 		assertEquals(HttpStatus.CREATED, respEntyty.getStatusCode());
 		
 		groupService.deleteGroup(group.getGroupName());
+		
 //		verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
 	}
 }
