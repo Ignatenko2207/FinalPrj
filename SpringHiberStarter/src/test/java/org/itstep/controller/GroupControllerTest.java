@@ -55,6 +55,7 @@ public class GroupControllerTest {
 		}
 		ResponseEntity<Group> respEntyty = testRestTemplate.exchange(reqEntity, Group.class);
 		assertEquals(HttpStatus.CREATED, respEntyty.getStatusCode());
+		
 //		verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
 	}
 
