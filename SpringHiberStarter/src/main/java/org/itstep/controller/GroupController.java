@@ -1,7 +1,7 @@
 package org.itstep.controller;
 
+import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
 import org.itstep.dao.pojo.Group;
 import org.itstep.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,44 +11,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-
 @Controller
-
 @RequestMapping(value = "/group")
-
 public class GroupController {
 
-
-
-    @Autowired
-
-    GroupService groupService;
+	@Autowired
+	GroupService groupService;
 
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 
     public ResponseEntity<Group> createGroup(@RequestBody Group group) {
-
         if(groupService.isUnique(group)) {
-
             Group groupDB = groupService.createAndUpdateGroup(group);
-
             if(groupDB == null) {
-
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
-
             }
-
             return new ResponseEntity<Group>(groupDB, HttpStatus.CREATED);
-
         }
-
         return new ResponseEntity(HttpStatus.NOT_FOUND);
-
     }
 
 
@@ -105,30 +90,16 @@ public class GroupController {
 
         return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);
 
+	}
 
-
-    }
-
-
-
-    @DeleteMapping
-
-    public ResponseEntity deleteGroup(String groupName) {
-
-        try {
-
-            groupService.deleteGroup(groupName);
-
-        } catch (Exception e) {
-
-            log.error(e.getMessage());
-
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-
-        }
-
-        return new ResponseEntity(HttpStatus.OK);
-
-    }
-
+	@DeleteMapping
+	public ResponseEntity deleteGroup(@RequestParam(required = true) String groupName) {
+		try {
+			groupService.deleteGroup(groupName);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity(HttpStatus.OK);
+	}
 }
