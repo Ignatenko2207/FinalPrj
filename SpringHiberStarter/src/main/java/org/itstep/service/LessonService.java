@@ -21,7 +21,7 @@ public interface LessonService {
 	
 	List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end);
 
-	List<Lesson> getLessonsForPeriod(Long start, Long end);
+	List<Lesson> getLessonsForTeacherForPeriod(String teacherLogin, Long start, Long end);
 	
 	public boolean isUnique(Lesson lesson);
 }

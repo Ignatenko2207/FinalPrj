@@ -24,6 +24,6 @@ public interface LessonDAO extends JpaRepository<Lesson, Long> {
 	List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end);
 
 	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND START_TIME>?1 AND START_TIME<?3",  nativeQuery = true)
-	List<Lesson> getLessonsForPeriod(String teacher, Long start, Long end);
+	List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end);
 	
 }

@@ -27,7 +27,6 @@ public class LessonController {
 	@Autowired
 	LessonService lessonService;
 
-	// get one by id
 
 	@GetMapping(value = "/get-one-by-id")
 	public ResponseEntity<Lesson> getLesson(Long lessonId) {
@@ -37,7 +36,6 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
-	// create
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson) {
@@ -48,7 +46,6 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
-	// update
 
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Lesson> updateLesson(@RequestBody Lesson lesson) {
@@ -59,7 +56,6 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	// delete
 
 	@DeleteMapping
 	public ResponseEntity deleteLesson(@RequestParam(required = true) Long lessonId) {
@@ -72,7 +68,6 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
-	// get one by group and start time
 
 	@GetMapping(value = "/get-one-by-group-and-time")
 	public ResponseEntity<Lesson> getOneByGroupAndStartTime(String group, Long startTime) {
@@ -82,7 +77,6 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
-	// get one by teacher and start time
 
 	@GetMapping(value = "/get-one-by-teacher-and-time")
 	public ResponseEntity<Lesson> getOneByTeacherAndStartTime(String teacher, Long startTime) {
@@ -102,7 +96,6 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
-	// get lessons by course and time period(long values)
 
 	@GetMapping(value = "/get-lessons-by-course-and-period")
 	public ResponseEntity<List<Lesson>> getLessonsByCourseAndPeriod(Integer course, Long startTime, Long length) {
@@ -112,15 +105,16 @@ public class LessonController {
 		}
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
-		// get lessons for group and time period(long values)
 
-		@GetMapping(value = "/get-lessons-by-period")
-		public ResponseEntity<List<Lesson>> getLessonsByPeriod(Long startTime, Long length) {
-			List<Lesson> lessonsDB = lessonService.getLessonsForPeriod(startTime, length);
+		@GetMapping(value = "/get-lessons-by-teacher-and-period")
+		public ResponseEntity<List<Lesson>> getLessonsByPeriod(String teacherLogin, Long startTime, Long length) {
+			List<Lesson> lessonsDB = lessonService.getLessonsForTeacherForPeriod(teacherLogin, startTime, length);
 			if (lessonsDB != null) {
 				return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
 			}
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
+		
+		
 	}
 	
