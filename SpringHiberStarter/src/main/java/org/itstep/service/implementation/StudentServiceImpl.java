@@ -18,8 +18,13 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public void createAndUpdate(Student student) {
-        studentDAO.saveAndFlush(student);
+    public Student findOneByLogin(String login) {
+        return studentDAO.findOne(login);
+    }
+
+    @Override
+    public Student createAndUpdate(Student student) {
+        return studentDAO.saveAndFlush(student);
     }
 
 
@@ -38,8 +43,21 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public  List<Student> getAllByGroup(String groups){
+
         return studentDAO.getAllByGroup(groups);
     }
 
+
+
+
+
+    @Override
+    public boolean isUnique(String student) {
+        if (studentDAO.getByLogin(student) != null) {
+            return false;
+        }
+
+        return true;
+    }
 
 }

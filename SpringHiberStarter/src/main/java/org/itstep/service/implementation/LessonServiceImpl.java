@@ -112,7 +112,7 @@ public class LessonServiceImpl implements LessonService{
 
     public boolean isUnique(Lesson lesson) {
 
-        if(lessonDAO.getOneByTeacherAndStartTime(lesson.getTeacher(), lesson.getStartTime()) != null) {
+        if(lessonDAO. getLessonsForTeacherForPeriod(lesson.getTeacher(), lesson.getStartTime()) != null) {
 
             return false;
 
