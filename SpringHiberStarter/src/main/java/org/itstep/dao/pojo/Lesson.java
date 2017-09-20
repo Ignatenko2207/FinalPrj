@@ -1,7 +1,5 @@
 package org.itstep.dao.pojo;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +17,7 @@ import lombok.Setter;
 public class Lesson{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "ID", nullable = false)
 	private Long lessonId;
 	

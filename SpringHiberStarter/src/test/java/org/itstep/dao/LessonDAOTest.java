@@ -19,15 +19,15 @@ import lombok.extern.slf4j.Slf4j;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
 public class LessonDAOTest {
-
+	
 	@Autowired
 	LessonDAO lessonDAO;
 	
 	@Autowired
 	GroupDAO groupDAO;
-	
+
 	@Test
-	public void testGetLessonsForCourseForPeriod() {
+	 public void testGetLessonsForCourseForPeriod() {
 		Lesson lesson = new Lesson();
 		lesson.setLessonStart(2L);
 		lesson.setLength(0L);
@@ -41,10 +41,10 @@ public class LessonDAOTest {
 		Lesson lessonDB = lessonDAO.save(lesson);
 		log.info(lessonDB.getLessonId().toString());
 		Group groupDB = groupDAO.save(group);
-		List<Lesson> lessonsFromDB = lessonDAO.getLessonsForCourseForPeriod(group.getCourse(), 0L, 3L);
+		List<Lesson> lessonsFromDB = lessonDAO.getLessonsForCourseForPeriod(groupDB.getCourse(), 0L, 3L);
 		assertNotNull(lessonsFromDB);
 		assertEquals(lessonDB.getLessonId(), lessonsFromDB.get(0).getLessonId());
-		groupDAO.delete(group);
+		groupDAO.delete(groupDB);
 		lessonDAO.delete(lesson);
 	}
 

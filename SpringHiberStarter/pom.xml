@@ -58,7 +58,7 @@
         <swagger.version>2.6.1</swagger.version>
         
         <springockito.version>1.0.9</springockito.version>
-        <mockito.version>2.8.47</mockito.version>
+        <mockito.version>2.10.0</mockito.version>
         <junit.version>4.12</junit.version>
     </properties>
 
@@ -228,11 +228,12 @@
     		<artifactId>HikariCP</artifactId>
     		<version>2.6.1</version>
 		</dependency>
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.1.1</version>
-</dependency>
+		
+		<dependency>
+    		<groupId>org.postgresql</groupId>
+    		<artifactId>postgresql</artifactId>
+    		<version>42.1.1</version>
+		</dependency>
 
 	
   		<dependency>
