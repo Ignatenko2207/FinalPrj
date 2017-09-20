@@ -14,8 +14,6 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     TeacherDAO teacherDAO;
-
-
     @Override
     public void createAndUpdate(Teacher teacher) {
         teacherDAO.saveAndFlush(teacher);
