@@ -1,0 +1,292 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.itstep</groupId>
+  <artifactId>SpringHiberStarter</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>SpringHiberStarter</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+
+		<jdk.version>1.8</jdk.version>
+        <jre.version>1.8.0_144</jre.version>
+        
+        <product.version>0.1-SNAPSHOT</product.version>
+        <lib.property>lib</lib.property>
+        <our.lib.groupIds.property>org.itstep</our.lib.groupIds.property>
+        <output.directory>../build</output.directory>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <maven.source.plugin.version>2.4</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
+        <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+        <exec.maven.plugin.version>1.4.0</exec.maven.plugin.version>
+        <jar.plugin.version>2.6</jar.plugin.version>
+        <dependency.plugin.version>2.10</dependency.plugin.version>
+        <compiler.plugin.version>3.3</compiler.plugin.version>
+
+        <commons.io.version>2.5</commons.io.version>
+        <commons.collection.version>3.2.2</commons.collection.version>
+        <commons.lang3.version>3.4</commons.lang3.version>
+        <commons.exec.version>1.1</commons.exec.version>
+        <commons.collections.version>4.1</commons.collections.version>
+        <commons.codec.version>1.7</commons.codec.version>
+        <commons.logging.version>1.2</commons.logging.version>
+		<apache.commons.net.version>3.6</apache.commons.net.version>
+		
+        <lombok.version>1.16.16</lombok.version>
+        <hikari.version>2.6.0</hikari.version>
+        
+        <spring.version>4.3.7.RELEASE</spring.version>
+        <spring.boot.version>1.5.2.RELEASE</spring.boot.version>
+        <io.springfox.version>2.6.1</io.springfox.version>
+                
+        <servlet.version>3.1.0</servlet.version>
+        
+        <h2.version>1.4.194</h2.version>
+        <postgresql.version>42.1.1</postgresql.version>
+        
+		<gson.version>2.3.1</gson.version>
+        <jackson.version>2.8.7</jackson.version>
+        
+        <sl4j.version>1.7.12</sl4j.version>
+        <logback.version>1.1.3</logback.version>
+        <swagger.version>2.6.1</swagger.version>
+        
+        <springockito.version>1.0.9</springockito.version>
+        <mockito.version>2.8.47</mockito.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <build>
+    	<resources>
+    		<resource>
+        		<directory>src/main/resources</directory>
+        		<filtering>true</filtering>
+    		</resource>
+		</resources>
+        
+        <plugins>
+        
+        <plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-resources-plugin</artifactId>
+    		<version>2.7</version>
+    		<configuration>
+        		<delimiters>
+            		<delimiter>@</delimiter>
+        		</delimiters>
+        		<useDefaultDelimiters>false</useDefaultDelimiters>
+    		</configuration>
+			</plugin>
+			
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <source>2.2</source>
+                    <target>2.2</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>src\main\webapp\WEB-INF\web.xml</webXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+	
+	
+  	<dependencies>
+  		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.4.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <version>${spring.boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+  		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        
+		<dependency>
+    		<groupId>org.springframework.data</groupId>
+    		<artifactId>spring-data-jpa</artifactId>
+    		<version>1.11.1.RELEASE</version>
+		</dependency>
+	
+		<dependency>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>hibernate</artifactId>
+    		<version>3.2.1.ga</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.0.0.ga</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.3.0.ga</version>
+		</dependency>
+		<dependency>
+    		<groupId>com.fasterxml.jackson.datatype</groupId>
+    		<artifactId>jackson-datatype-hibernate5</artifactId>
+    		<version>2.8.8</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>com.zaxxer</groupId>
+    		<artifactId>HikariCP</artifactId>
+    		<version>2.6.1</version>
+		</dependency>
+	
+		<dependency>
+    		<groupId>org.postgresql</groupId>
+    		<artifactId>postgresql</artifactId>
+    		<version>${postgresql.version}</version>
+		</dependency>
+  		<dependency>
+    		<groupId>com.h2database</groupId>
+    		<artifactId>h2</artifactId>
+    		<version>1.4.195</version>
+		</dependency>
+  		
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-core</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-spring-web</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-common</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+        </dependency>
+
+    </dependencies>
+</project>

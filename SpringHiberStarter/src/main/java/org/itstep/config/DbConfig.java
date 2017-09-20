@@ -10,8 +10,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -19,49 +17,34 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 @Configuration
 @EnableJpaRepositories("org.itstep.dao")
 @EnableTransactionManagement
 @EnableAsync
-@EntityScan("org.itstep")
+@EntityScan("org.itstep.dao.pojo")
 @ConfigurationProperties
-public class DbConfig extends HikariConfig {
+public class DbConfig{
 
-	@Value(value = "${spring.datasource.hikari.username}")
+	@Value(value = "${username}")
 	private String username;
 
-	@Value(value = "${spring.datasource.hikari.password}")
+	@Value(value = "${password}")
 	private String password;
 
-//	@Value(value = "${spring.datasource.hikari.data-source-class-name}")
-//	private String dataSourceClassName;
+	@Value(value = "${driver-class-name}")
+	private String driverClassName;
 
-	@Value(value = "${spring.datasource.hikari.driver-class-name}")
-	private String dataSourceDriverName;
-	
-//	@Value(value = "${spring.datasource.hikari.database-name}")
-//	private String databaseName;
-//
-//	@Value(value = "${spring.datasource.hikari.driver-type}")
-//	private Integer driverType;
-
-	@Value(value = "${spring.datasource.hikari.url}")
+	@Value(value = "${url}")
 	private String url;
 
-//	@Value(value = "${spring.datasource.hikari.schema}")
-//	private String schema;
-
-	@Value(value = "${spring.datasource.hikari.hbm2ddl.auto}")
-	private String hbm2Ddl;
+	@Value(value = "${db-option}")
+	private String dbOption;
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "org.itstep" });
+		em.setPackagesToScan(new String[] { "org.itstep.dao.pojo" });
 		em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		em.setJpaProperties(additionalProperties());
 		return em;
@@ -74,14 +57,14 @@ public class DbConfig extends HikariConfig {
 
 	Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", hbm2Ddl);
+		properties.setProperty("hibernate.hbm2ddl.auto", dbOption);
 		return properties;
 	}
 
     @Bean
     public DataSource dataSource() {
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(dataSourceDriverName);
+        dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
