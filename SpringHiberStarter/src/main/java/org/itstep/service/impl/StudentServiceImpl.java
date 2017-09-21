@@ -15,10 +15,7 @@ public class StudentServiceImpl implements StudentSevice{
 	@Autowired
 	StudentDAO studentDAO;
 	
-	@Override
-	public Student getStudent(String login){
-		return studentDAO.findOne(login);
-	}
+
 
 	@Override
 	public Student createAndUpdateStudent(Student student){

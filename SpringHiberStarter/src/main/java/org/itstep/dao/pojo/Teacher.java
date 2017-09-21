@@ -18,7 +18,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "TEACHERS")
 public class Teacher extends User  {
-	private static final long serialVersionUID = -8271044135754385480L;
 	
 	@Column(name = "TEACHER_SUBJECT", unique= true, nullable = false)
 	private String subject;

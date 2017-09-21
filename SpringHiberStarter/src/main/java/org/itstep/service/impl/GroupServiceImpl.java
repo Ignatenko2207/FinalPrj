@@ -15,11 +15,6 @@ public class GroupServiceImpl implements GroupService{
 	GroupDAO groupDAO;
 	
 	@Override
-	public Group getGroup(String groupName) {
-		return groupDAO.getOne(groupName);
-	}
-
-	@Override
 	public Group createAndUpdateGroup(Group group) {
 		return groupDAO.saveAndFlush(group);
 	}
@@ -30,16 +25,18 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public List<Group> findAllByCourse(int course) {
-		return groupDAO.findAllByCourse(course);
+	public List<Group> findAllGroupsByCourse(int course) {
+		return groupDAO.findAllGroupsByCourse(course);
 	}
 	
 	@Override
 	public boolean isUnique(Group group) {
-		if(groupDAO.getOne(group.getGroupName()) != null) {
+		if(groupDAO.findOne(group.getGroupName()) != null) {
 			return false;
 		}
 		return true;
 	}
+
+
 
 }

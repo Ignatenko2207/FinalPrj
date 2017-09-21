@@ -11,19 +11,18 @@ import org.springframework.stereotype.Repository;
 public interface LessonDAO extends JpaRepository<Lesson, Long> {
 
 	@Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME = ?1 AND START_TIME = ?2", nativeQuery = true)
-	Lesson getOneByGroupAndStartTime(String group, Long startTime);
+	List<Lesson> getLessonsByGroupAndStartTime(String group, Long startTime);
 	
 	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND START_TIME = ?2", nativeQuery = true)
-	Lesson getOneByTeacherAndStartTime(String teacher, Long startTime);
+	List<Lesson> getLessonsByTeacherAndStartTime(String teacher, Long startTime);
 	
-	@Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME = ?1 AND START_TIME = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME = ?1 AND START_TIME >= ?2 AND START_TIME <= ?3 ", nativeQuery = true)
 	List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end);
 	
-	@Query(value = "SELECT * FROM LESSONS INNER JOIN GROUPS ON LESSONS.GROUP_NAME = GROUPS.GROUP_NAME "
-			+ "WHERE GROUPS.COURSE = ?1 AND LESSONS.START_TIME > ?2 AND LESSONS.START_TIME< ?3 ",  nativeQuery = true)
+	@Query(value = "SELECT * FROM LESSONS INNER JOIN GROUPS ON GROUPS.GROUP_NAME = LESSONS.GROUP_NAME AND  GROUPS.COURSE = ?1 AND LESSONS.START_TIME >= ?2 AND LESSONS.START_TIME<= ?3 ",  nativeQuery = true)
 	List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end);
 
-	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND START_TIME>?1 AND START_TIME<?3",  nativeQuery = true)
+	@Query(value = "SELECT * FROM LESSONS WHERE TEACHER = ?1 AND START_TIME>=?2 AND START_TIME<=?3",  nativeQuery = true)
 	List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end);
 	
 }

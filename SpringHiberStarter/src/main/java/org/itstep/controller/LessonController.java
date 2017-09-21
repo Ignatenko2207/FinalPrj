@@ -2,6 +2,7 @@ package org.itstep.controller;
 
 import java.util.List;
 
+import org.itstep.dao.LessonDAO;
 import org.itstep.dao.pojo.Lesson;
 import org.itstep.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,14 @@ public class LessonController {
 
 	@Autowired
 	LessonService lessonService;
+	
+	@Autowired
+	LessonDAO lessonDAO;
 
 
 	@GetMapping(value = "/get-one-by-id")
 	public ResponseEntity<Lesson> getLesson(Long lessonId) {
-		Lesson lessonDB = lessonService.getLesson(lessonId);
+		Lesson lessonDB = lessonDAO.findOne(lessonId);
 		if (lessonDB != null)
 			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -70,19 +74,19 @@ public class LessonController {
 
 
 	@GetMapping(value = "/get-one-by-group-and-time")
-	public ResponseEntity<Lesson> getOneByGroupAndStartTime(String group, Long startTime) {
-		Lesson lessonDB = lessonService.getOneByGroupAndStartTime(group, startTime);
-		if (lessonDB != null)
-			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);
+	public ResponseEntity<List<Lesson> > getOneByGroupAndStartTime(String group, Long startTime) {
+		List<Lesson> lessonsDB = lessonService.getLessonsByGroupAndStartTime(group, startTime);
+		if (lessonsDB != null)
+			return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
 
 	@GetMapping(value = "/get-one-by-teacher-and-time")
-	public ResponseEntity<Lesson> getOneByTeacherAndStartTime(String teacher, Long startTime) {
-		Lesson lessonDB = lessonService.getOneByTeacherAndStartTime(teacher, startTime);
-		if (lessonDB != null)
-			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);
+	public ResponseEntity<List<Lesson> > getOneByTeacherAndStartTime(String teacher, Long startTime) {
+		List<Lesson>  lessonsDB = lessonService.getLessonsByTeacherAndStartTime(teacher, startTime);
+		if (lessonsDB != null)
+			return new ResponseEntity<List<Lesson> >(lessonsDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 

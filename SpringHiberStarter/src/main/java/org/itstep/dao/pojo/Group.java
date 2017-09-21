@@ -13,17 +13,17 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
 @Table(name = "GROUPS")
 public class Group implements Serializable {
-	private static final long serialVersionUID = -3084489932306805115L;
 	@Id
 	@Column(name = "GROUP_NAME", nullable = false)
 	private String groupName;
 	@Column(name = "COURSE", nullable = false)
 	private Integer course;
+	
 	public Group() {
 	}
 }

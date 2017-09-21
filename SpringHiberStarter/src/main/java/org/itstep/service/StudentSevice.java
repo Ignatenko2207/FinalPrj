@@ -6,7 +6,6 @@ import org.itstep.dao.pojo.Student;
 
 public interface StudentSevice {
 
-	public Student getStudent(String login);
 	
 	public Student createAndUpdateStudent(Student student);
 	

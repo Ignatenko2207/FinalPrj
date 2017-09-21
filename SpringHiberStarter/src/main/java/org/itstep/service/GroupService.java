@@ -7,13 +7,12 @@ import org.itstep.dao.pojo.Group;
 
 public interface GroupService {
 
-	public Group getGroup(String groupName);
 
 	public Group createAndUpdateGroup(Group group);
 
 	public void deleteGroup(String groupName);
 
-	List<Group> findAllByCourse(int course);
+	List<Group> findAllGroupsByCourse(int course);
 	
 	public boolean isUnique(Group group);
 }

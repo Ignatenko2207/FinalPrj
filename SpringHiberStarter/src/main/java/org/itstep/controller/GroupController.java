@@ -2,6 +2,7 @@ package org.itstep.controller;
 
 import java.util.List;
 
+import org.itstep.dao.GroupDAO;
 import org.itstep.dao.pojo.Group;
 import org.itstep.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class GroupController {
 
 	@Autowired
 	GroupService groupService;
+	
+	@Autowired
+	GroupDAO groupDAO;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -57,7 +61,7 @@ public class GroupController {
 	
 	@GetMapping(value = "/get-group")
 	public ResponseEntity<Group> getOneGroup(@RequestParam(required = true) String groupName) {
-		Group groupDB = groupService.getGroup(groupName);
+		Group groupDB = groupDAO.findOne(groupName);
 		if(groupDB == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
@@ -66,7 +70,7 @@ public class GroupController {
 	
 	@GetMapping(value = "/get-grouplist")
 	public ResponseEntity<List<Group>> getOneGroup(@RequestParam(required = true) int course) {
-		List<Group> groupList = groupService.findAllByCourse(course);
+		List<Group> groupList = groupService.findAllGroupsByCourse(course);
 		return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);
 
 	}

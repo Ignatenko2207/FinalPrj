@@ -9,13 +9,12 @@ public interface LessonService {
 
 	Lesson saveAndUpdate(Lesson lesson);
 	
-	Lesson getLesson(Long lessonId);
 	
 	void delete(Long id);
 	
-	Lesson getOneByGroupAndStartTime(String group, Long startTime);
+	List<Lesson> getLessonsByGroupAndStartTime(String group, Long startTime);
 	
-	Lesson getOneByTeacherAndStartTime(String teacher, Long startTime);
+	List<Lesson> getLessonsByTeacherAndStartTime(String teacher, Long startTime);
 	
 	List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end);
 	

@@ -20,7 +20,6 @@ import lombok.experimental.Accessors;
 @Getter
 @MappedSuperclass
 public class User implements Serializable {
-	private static final long serialVersionUID = 6797984300707733576L;
 	@Id
 	@Column(name = "LOGIN", unique= true)
 	private String login;
@@ -28,6 +27,7 @@ public class User implements Serializable {
 	private String fullName;
 	@Column(name = "PASSWORD", unique= true, nullable = false)
 	private String password;
+	
 	public User() {
 	}
 	

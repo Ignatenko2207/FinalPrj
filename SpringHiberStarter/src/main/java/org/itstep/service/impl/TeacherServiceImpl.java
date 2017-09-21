@@ -12,10 +12,6 @@ public class TeacherServiceImpl implements TeacherService {
 	@Autowired
 	TeacherDAO teacherDAO;
 
-	@Override
-	public Teacher getTeacher(String login) {
-		return teacherDAO.getOne(login);
-	}
 
 	@Override
 	public Teacher createAndUpdateTeacher(Teacher teacher) {
