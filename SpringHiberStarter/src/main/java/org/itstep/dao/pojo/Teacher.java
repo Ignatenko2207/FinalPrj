@@ -32,4 +32,14 @@ public class Teacher{
 	
 	public Teacher() {
 	}
+
+	public Teacher(String login, String password, String firstName, String lastName, String subject) {
+		this.login = login;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.subject = subject;
+	}
+	
+	
 }
