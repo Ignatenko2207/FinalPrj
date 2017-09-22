@@ -28,6 +28,7 @@ public class Student  {
     @Column(name="LEAST_NAME")
     private String lastName;
 
+
     @Column(name = "GROUP_ID")
     private String group;
 

@@ -1,6 +1,5 @@
 package org.itstep.service;
 
-import org.itstep.dao.pojo.Student;
 import org.itstep.dao.pojo.Teacher;
 
 import java.util.List;
@@ -8,17 +7,9 @@ import java.util.List;
 public interface TeacherService {
 
 
+    Teacher getTeacher(String login);
 
-    public void createAndUpdate(Teacher teacher);
+    Teacher createAndUpdate(Teacher teacher);
 
-
-    public void delete(Teacher teacher);
-
-    List<Teacher> getAllBySubject(String subject);
-
-    List<Teacher> getAllByLogin(String login);
-
-
-
-
+    void deleteTeacher(Teacher teacher);
 }

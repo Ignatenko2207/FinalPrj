@@ -19,6 +19,7 @@ public class GroupServiceImpl implements GroupService{
 		return groupDAO.findOne(groupName);
 	}
 
+
 	@Override
 	public Group createAndUpdateGroup(Group group) {
 		return groupDAO.saveAndFlush(group);

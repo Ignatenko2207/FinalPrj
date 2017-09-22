@@ -19,4 +19,6 @@ public interface StudentDAO  extends JpaRepository<Student,String>{
     @Query(value = "SELECT * FROM STUDENTS WHERE LOGIN =?1",nativeQuery = true)
     public List<Student> getByLogin(String login);
 
+
+
 }

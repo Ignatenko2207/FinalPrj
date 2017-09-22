@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ConfigurationProperties
 public class DbConfig{
 
+
 	@Value(value = "${username}")
 	private String username;
 

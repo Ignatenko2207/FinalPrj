@@ -26,7 +26,8 @@ public class Lesson{
 	
 	@Column(name = "LENGTH", nullable = false)
 	private Long length;
-	
+
+
 	@Column(name = "TEACHER", nullable = false)
 	private String teacher;
 

@@ -32,6 +32,7 @@ public class SudentController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
+
     @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Student> updateStudent (@RequestBody Student student){
         if(!studentService.isUnique(student.getLogin())){

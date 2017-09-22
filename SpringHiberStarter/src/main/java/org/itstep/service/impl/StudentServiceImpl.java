@@ -32,12 +32,12 @@ public class StudentServiceImpl implements StudentSevice{
 	
 	@Override
 	public List<Student> findStudentsByGroup(String group){
-		return studentDAO.findStudentsByGroup(group);
+		return studentDAO.getAllByGroup(group);
 	}
 
 	@Override
 	public List<Student> findAllStudentsByCourse(int course){
-		return studentDAO.findAllStudentsByCourse(course);
+		return studentDAO.getAllByCourse(course);
 	}
 	
 		

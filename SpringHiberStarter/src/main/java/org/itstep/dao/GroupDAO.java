@@ -10,6 +10,7 @@ public interface GroupDAO  extends JpaRepository<Group,String>{
 
 
 
+
     @Query(value = "SELECT * FROM GROUPS WHERE COURSE = ?1",nativeQuery = true)
     List<Group> findAllByCourse(int course);
 }
