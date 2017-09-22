@@ -9,7 +9,6 @@ public interface LessonService {
 
 	Lesson saveAndUpdate(Lesson lesson);
 	
-	
 	void delete(Long id);
 	
 	List<Lesson> getLessonsByGroupAndStartTime(String group, Long startTime);

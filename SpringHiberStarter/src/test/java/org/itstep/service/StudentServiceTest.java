@@ -17,22 +17,27 @@ public class StudentServiceTest {
 
 	@Test
 	public void testGetStudent() {
+		fail();
 	}
 
 	@Test
 	public void testCreateAndUpdateStudent() {
+		fail();
 	}
 
 	@Test
 	public void testDeleteStudent() {
+		fail();
 	}
 
 	@Test
 	public void testFindStudentsByGroup() {
+		fail();
 	}
 
 	@Test
 	public void testFindAllStudentsByCourse() {
+		fail();
 	}
 
 }

@@ -4,8 +4,11 @@ import static org.junit.Assert.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.itstep.App;
+import org.itstep.dao.GroupDAO;
 import org.itstep.dao.pojo.Group;
 import org.itstep.service.GroupService;
 import org.junit.Test;
@@ -32,29 +35,70 @@ public class GroupControllerTest {
 	@MockBean
 	GroupService groupService;
 	
+	@MockBean
+	GroupDAO groupDAO;
+	
 	@Autowired
 	TestRestTemplate testRestTemplate;
 	
 	@Test
-	public void createGroup(){
+	public void createGroupTest(){
 
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
-//		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
-//		when(groupService.isUnique(group)).thenReturn(true);
-//		when(groupDAO.findOne(group.getGroupName())).thenReturn(null);
-		RequestEntity<Group> reqEntity = null;
-		try {
-			reqEntity = new RequestEntity<Group>(group, HttpMethod.POST, new URI("/group"));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		ResponseEntity<Group> respEntyty = testRestTemplate.exchange(reqEntity, Group.class);
-		assertEquals(HttpStatus.CREATED, respEntyty.getStatusCode());
-		
+		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
+		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
+		Mockito.when(groupDAO.findOne(Mockito.<String>any())).thenReturn(null);
+		groupService.createAndUpdateGroup(group);
+		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
 		groupService.deleteGroup(group.getGroupName());
 		
-//		verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
 	}
+	
+	@Test
+	public void updateGroupTest(){
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
+		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
+		Mockito.when(groupDAO.findOne(Mockito.<String>any())).thenReturn(group);
+		groupService.createAndUpdateGroup(group);
+		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
+	}
+	
+	@Test
+	public void getGroupTest(){
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		Mockito.when(groupDAO.findOne(Mockito.anyString())).thenReturn(group);
+		groupDAO.findOne(group.getGroupName());
+		Mockito.verify(groupDAO, Mockito.times(1)).findOne(Mockito.<String>any());
+	}
+	
+
+	
+	@Test
+	public void deleteGroup(){
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		Mockito.doNothing().when(groupService).deleteGroup(Mockito.<String>any());
+		groupService.deleteGroup(group.getGroupName());
+		Mockito.verify(groupService, Mockito.times(1)).deleteGroup(Mockito.<String>any());
+	}
+	
+	@Test
+	public void getGroupListTest(){
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		List<Group> groupList = Arrays.asList();
+		Mockito.when(groupService.findAllGroupsByCourse(Mockito.anyInt())).thenReturn(groupList);
+		groupService.findAllGroupsByCourse(group.getCourse());		
+		Mockito.verify(groupService, Mockito.times(1)).findAllGroupsByCourse(Mockito.anyInt());
+	}
+	
 }

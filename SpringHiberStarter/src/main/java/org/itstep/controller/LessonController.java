@@ -71,10 +71,17 @@ public class LessonController {
 		}
 		return new ResponseEntity(HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/get-lessons-by-teacher-and-time")
+	public ResponseEntity<List<Lesson> > getLessonsByTeacherAndStartTime(String teacher, Long startTime) {
+		List<Lesson>  lessonsDB = lessonService.getLessonsByTeacherAndStartTime(teacher, startTime);
+		if (lessonsDB != null)
+			return new ResponseEntity<List<Lesson> >(lessonsDB, HttpStatus.OK);
+		return new ResponseEntity(HttpStatus.NOT_FOUND);
+	}
 
-
-	@GetMapping(value = "/get-one-by-group-and-time")
-	public ResponseEntity<List<Lesson> > getOneByGroupAndStartTime(String group, Long startTime) {
+	@GetMapping(value = "/get-lessons-by-group-and-time")
+	public ResponseEntity<List<Lesson> > getLessonsByGroupAndStartTime(String group, Long startTime) {
 		List<Lesson> lessonsDB = lessonService.getLessonsByGroupAndStartTime(group, startTime);
 		if (lessonsDB != null)
 			return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
@@ -82,13 +89,7 @@ public class LessonController {
 	}
 
 
-	@GetMapping(value = "/get-one-by-teacher-and-time")
-	public ResponseEntity<List<Lesson> > getOneByTeacherAndStartTime(String teacher, Long startTime) {
-		List<Lesson>  lessonsDB = lessonService.getLessonsByTeacherAndStartTime(teacher, startTime);
-		if (lessonsDB != null)
-			return new ResponseEntity<List<Lesson> >(lessonsDB, HttpStatus.OK);
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
-	}
+
 
 	// get lessons by course and time period(long values)
 
@@ -111,7 +112,7 @@ public class LessonController {
 	}
 
 		@GetMapping(value = "/get-lessons-by-teacher-and-period")
-		public ResponseEntity<List<Lesson>> getLessonsByPeriod(String teacherLogin, Long startTime, Long length) {
+		public ResponseEntity<List<Lesson>> getLessonsByTeacherByPeriod(String teacherLogin, Long startTime, Long length) {
 			List<Lesson> lessonsDB = lessonService.getLessonsForTeacherForPeriod(teacherLogin, startTime, length);
 			if (lessonsDB != null) {
 				return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);

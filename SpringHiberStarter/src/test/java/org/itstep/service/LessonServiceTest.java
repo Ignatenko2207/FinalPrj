@@ -79,7 +79,7 @@ public class LessonServiceTest {
 	}
 
 	@Test
-	public void testGetOneByGroupAndStartTime() {
+	public void testLessonsByGroupAndStartTime() {
 		Lesson lesson = new Lesson();
 		lesson.setGroup("groupzzz");
 		lesson.setLength(22l);

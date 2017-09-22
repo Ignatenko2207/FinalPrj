@@ -17,18 +17,22 @@ public class TeacherServiceTest {
 
 	@Test
 	public void testGetTeacher() {
+		fail();
 	}
 
 	@Test
 	public void testCreateAndUpdateTeacher() {
+		fail();
 	}
 
 	@Test
 	public void testDeleteTeacher() {
+		fail();
 	}
 
 	@Test
 	public void testFindGroupsByTeacher() {
+		fail();
 	}
 
 }

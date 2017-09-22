@@ -69,10 +69,9 @@ public class GroupController {
 	}
 	
 	@GetMapping(value = "/get-grouplist")
-	public ResponseEntity<List<Group>> getOneGroup(@RequestParam(required = true) int course) {
+	public ResponseEntity<List<Group>> getGroupList(@RequestParam(required = true) int course) {
 		List<Group> groupList = groupService.findAllGroupsByCourse(course);
 		return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);
-
 	}
 
 	@DeleteMapping

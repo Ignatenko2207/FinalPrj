@@ -37,13 +37,14 @@ public class LessonServiceImpl implements LessonService{
 	}
 
 	@Override
-	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end) {
-		
+	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long length) {
+		Long end = start+length;
 		return lessonDAO.getLessonsForGroupForPeriod(group, start, end);
 	}
 
 	@Override
-	public List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end) {
+	public List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long length) {
+		Long end = start+length;
 		return lessonDAO.getLessonsForCourseForPeriod(course, start, end);
 	}
 
@@ -58,7 +59,8 @@ public class LessonServiceImpl implements LessonService{
 	}
 
 	@Override
-	public List<Lesson> getLessonsForTeacherForPeriod(String teacherLogin, Long start, Long end) {
+	public List<Lesson> getLessonsForTeacherForPeriod(String teacherLogin, Long start, Long length) {
+		Long end = start+length;
 		return lessonDAO.getLessonsForTeacherForPeriod(teacherLogin, start, end);
 	}
 
