@@ -1,0 +1,22 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+.gitignore
+.idea/dataSources.local.xml
+.idea/dataSources/
+.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_5_4_RELEASE.xml
+.idea/libraries/Maven__org_springframework_spring_test_4_3_9_RELEASE.xml
+.idea/workspace.xml
+SpringHiberStarter/target/
