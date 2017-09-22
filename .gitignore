@@ -20,3 +20,4 @@ buildNumber.properties
 .idea/libraries/Maven__org_springframework_spring_test_4_3_9_RELEASE.xml
 .idea/workspace.xml
 SpringHiberStarter/target/
+/.idea/
