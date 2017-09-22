@@ -33,20 +33,16 @@ public class GroupControllerTest {
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 	
-//	@MockBean
-//	private GroupService groupService;
-//	
-//	@MockBean
-//	GroupDAO groupDAO;
-//	
+	@MockBean
+	private GroupService groupService;
+	
 	@Test
 	public void testSaveGroup() {
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
-//		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
-//		when(groupService.isUnique(group)).thenReturn(true);
-//		when(groupDAO.findOne(group.getGroupName())).thenReturn(null);
+		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
+		when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
 		RequestEntity<Group> reqEntity = null;
 		try {
 			reqEntity = new RequestEntity<Group>(group, HttpMethod.POST, new URI("/group"));
@@ -56,7 +52,7 @@ public class GroupControllerTest {
 		ResponseEntity<Group> respEntyty = testRestTemplate.exchange(reqEntity, Group.class);
 		assertEquals(HttpStatus.CREATED, respEntyty.getStatusCode());
 		
-//		verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
+		verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
 	}
 
 	@Test
