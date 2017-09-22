@@ -25,6 +25,12 @@ public class LessonServiceImpl implements LessonService{
 	}
 
 	@Override
+	public Lesson getLesson(Long lessonId) {
+		return null;
+	}
+
+
+	@Override
 	public Lesson getOneByGroupAndStartTime(String group, Long startTime) {
 		return lessonDAO.getOneByGroupAndStartTime(group, startTime);
 	}
@@ -55,7 +61,7 @@ public class LessonServiceImpl implements LessonService{
 	
 	@Override
 	public boolean isUnique(Lesson lesson) {
-		if(lessonDAO.getOneByTeacherAndStartTime(lesson.getTeacher(), lesson.getLessonStart()) != null) {
+		if(lessonDAO.getLessonsForTeacherForPeriod(lesson.getTeacher(), lesson.getLessonStart()) != null) {
 			return false;
 		}
 		return true;
