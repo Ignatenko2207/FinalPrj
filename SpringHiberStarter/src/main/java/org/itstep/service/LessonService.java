@@ -11,6 +11,8 @@ public interface LessonService {
 
 	void delete(Long id);
 
+	Lesson getLesson(Long lessonId);
+
 	Lesson getOneByGroupAndStartTime(String group, Long startTime);
 
 	Lesson getOneByTeacherAndStartTime(String teacher, Long startTime);

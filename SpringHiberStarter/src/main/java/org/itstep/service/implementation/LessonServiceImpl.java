@@ -48,6 +48,10 @@ public class LessonServiceImpl implements LessonService{
 
     }
 
+    @Override
+    public Lesson getLesson(Long lessonId) {
+        return lessonDAO.findOne(lessonId);
+    }
 
 
     @Override
@@ -112,7 +116,7 @@ public class LessonServiceImpl implements LessonService{
 
     public boolean isUnique(Lesson lesson) {
 
-        if(lessonDAO. getLessonsForTeacherForPeriod(lesson.getTeacher(), lesson.getStartTime()) != null) {
+        if(lessonDAO. getLessonsForTeacherForPeriod(lesson.getTeacher(), lesson.getLessonStart()) != null) {
 
             return false;
 
