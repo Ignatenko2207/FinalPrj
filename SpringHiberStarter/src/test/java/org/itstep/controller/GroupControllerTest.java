@@ -1,23 +1,24 @@
 package org.itstep.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert. *;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.itstep.App;
-import org.itstep.dao.GroupDAO;
 import org.itstep.dao.pojo.Group;
 import org.itstep.service.GroupService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,7 @@ public class GroupControllerTest {
 	
 	@MockBean
 	private GroupService groupService;
+	
 	
 	@Test
 	public void testSaveGroup() {
@@ -57,6 +59,9 @@ public class GroupControllerTest {
 
 	@Test
 	public void testUpdateGroup() {
+		Group group = new Group("12pv5",2);
+		Group grInDb = groupService.createAndUpdateGroup(group);
+		assertNotNull(grInDb);
 	}
 
 	@Test

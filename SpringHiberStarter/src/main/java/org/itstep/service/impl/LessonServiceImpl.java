@@ -60,4 +60,10 @@ public class LessonServiceImpl implements LessonService{
 		}
 		return true;
 	}
+
+	@Override
+	public Lesson getLesson(Long lessonId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
