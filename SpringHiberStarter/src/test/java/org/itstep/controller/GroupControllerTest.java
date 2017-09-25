@@ -77,6 +77,7 @@ public class GroupControllerTest {
 
 	@Test
 	public void testGetGroup() {
+		
 	}
 
 	@Test
