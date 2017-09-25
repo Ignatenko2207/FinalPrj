@@ -28,50 +28,47 @@ public class GroupController {
 
 	@Autowired
 	GroupService groupService;
-	
+
 	@Autowired
 	GroupDAO groupDAO;
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Group> createGroup(@RequestBody Group group) {
-		if(groupService.isUnique(group)) {
+		if (groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
-			if(groupDB == null) {
+			if (groupDB == null) {
 				return new ResponseEntity<Group>(HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Group>(groupDB, HttpStatus.CREATED);
 		}
 		return new ResponseEntity<Group>(HttpStatus.NOT_FOUND);
 	}
-	
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Group> updateGroup(@RequestBody Group group) {
-		if(!groupService.isUnique(group)) {
+		if (!groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
-			if(groupDB == null) {
+			if (groupDB == null) {
 				return new ResponseEntity(HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
-	
-	
+
 	@GetMapping(value = "/get-group")
 	public ResponseEntity<Group> getOneGroup(@RequestParam(required = true) String groupName) {
 		Group groupDB = groupDAO.findOne(groupName);
-		if(groupDB == null) {
+		if (groupDB == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = "/get-grouplist")
 	public ResponseEntity<List<Group>> getGroupList(@RequestParam(required = true) int course) {
 		List<Group> groupList = groupService.findAllGroupsByCourse(course);
-		return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);
+		return new ResponseEntity<List<Group>>(groupList, HttpStatus.OK);
 	}
 
 	@DeleteMapping
