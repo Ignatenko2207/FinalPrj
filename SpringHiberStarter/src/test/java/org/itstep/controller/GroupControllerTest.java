@@ -1,13 +1,11 @@
 package org.itstep.controller;
 
-import static org.junit.Assert. *;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.itstep.App;
 import org.itstep.dao.pojo.Group;
@@ -57,11 +55,24 @@ public class GroupControllerTest {
 		verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
 	}
 
+	
+	
 	@Test
 	public void testUpdateGroup() {
-		Group group = new Group("12pv5",2);
-		Group grInDb = groupService.createAndUpdateGroup(group);
-		assertNotNull(grInDb);
+		
+//		Group group = new Group("J16",4);
+//		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
+//		when(groupService.isUnique(Mockito.<Group>any())).thenReturn(false);
+//		RequestEntity<Group> reqEntity = null;
+//		try {
+//			reqEntity = new RequestEntity<Group>(group, HttpMethod.PUT, new URI("/group"));
+//		} catch (URISyntaxException e) {
+//			e.printStackTrace();
+//		}
+//		ResponseEntity<Group> respEntyty = testRestTemplate.exchange(reqEntity, Group.class);
+//		assertEquals(HttpStatus.OK, respEntyty.getStatusCode());
+//		
+//		verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
 	}
 
 	@Test
@@ -77,4 +88,3 @@ public class GroupControllerTest {
 	}
 
 }
-
