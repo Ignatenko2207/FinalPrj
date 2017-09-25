@@ -73,13 +73,13 @@ public class LessonController {
 	public ResponseEntity<Lesson> getOneByTeacherAndStartTime(String teacher, Long startTime) {
 		Lesson lessonDB = lessonService.getOneByTeacherAndStartTime(teacher, startTime);
 		if (lessonDB != null)
-			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);
+			return new ResponseEntity (lessonDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping(value = "/get-lessons-by-group-and-period")
-	public ResponseEntity<List<Lesson>> getLessonsByGroupAndPeriod(String teacher, Long startTime, Long length) {
-		List<Lesson> lessonsDB = lessonService.getLessonsForGroupForPeriod(teacher, startTime, length);
+	public ResponseEntity<List<Lesson>> getLessonsByGroupAndPeriod(String teacher, Long startTime) {
+		List<Lesson> lessonsDB = lessonService.getLessonsForGroupForPeriod(teacher, startTime);
 		if (lessonsDB != null)
 			return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);

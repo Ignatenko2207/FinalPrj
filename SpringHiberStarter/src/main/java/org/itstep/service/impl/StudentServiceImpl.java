@@ -22,31 +22,34 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public Student findOneByLogin(String login) {
-		return null;
+		return studentDAO.findOne(login);
 	}
 
 	@Override
 	public Student createAndUpdate(Student student) {
-		return null;
+		return studentDAO.saveAndFlush(student);
 	}
 
 	@Override
 	public void delete(Student student) {
-
+		studentDAO.delete(student);
 	}
 
 	@Override
 	public List<Student> getAllByCourse(int course) {
-		return null;
+		return studentDAO.getAllByCourse(course);
 	}
 
 	@Override
 	public List<Student> getAllByGroup(String groups) {
-		return null;
+		return studentDAO.getAllByGroup(groups);
 	}
 
 	@Override
-	public boolean isUnique(String student) {
+	public boolean isUnique(String login) {
+		if(studentDAO.findOne(login) == null) {
+			return true;
+		}
 		return false;
 	}
 }

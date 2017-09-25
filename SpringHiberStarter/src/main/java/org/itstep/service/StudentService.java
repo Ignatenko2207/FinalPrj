@@ -9,8 +9,12 @@ public interface StudentService  {
     Student findOneByLogin(String login);
 
     public Student createAndUpdate(Student student);
+
     public void delete(Student student);
+
     List<Student> getAllByCourse(int course);
+
     List<Student> getAllByGroup(String groups);
-    public boolean isUnique(String student);
+
+    public boolean isUnique(String login);
 }

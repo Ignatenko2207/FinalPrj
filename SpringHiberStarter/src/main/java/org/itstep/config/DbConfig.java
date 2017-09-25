@@ -28,18 +28,18 @@ public class DbConfig{
 
 //	@Value(value = "${username}")
 //	private String username;
-
-	//@Value(value = "${password}")
+//
+//	@Value(value = "${password}")
 //	private String password;
 
-	//@Value(value = "${driver-class-name}")
+//	@Value(value = "${driver-class-name}")
 //	private String driverClassName;
 
-//	@Value(value = "${url}")
+	//@Value(value = "${url}")
 //	private String url;
 
-//	@Value(value = "${db-option}")
-//	private String dbOption;
+	//@Value(value = "${db-option}")
+	//private String dbOption;
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -65,7 +65,7 @@ public class DbConfig{
     @Bean
     public DataSource dataSource() {
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(" org.postgresql.ds.PGPoolingDataSource");
+        dataSource.setDriverClassName("org.postgresql.ds.PGPoolingDataSource");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/Final");
         dataSource.setUsername("postgres");
         dataSource.setPassword("1723");

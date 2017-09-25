@@ -18,11 +18,11 @@ public interface LessonService {
 
 	Lesson getOneByTeacherAndStartTime(String teacher, Long startTime);
 	
-	List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end);
+	List<Lesson> getLessonsForGroupForPeriod(String group, Long start);
 	
-	List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end);
+	List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start,Long end);
 
-	List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end);
+	List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start);
 
 	public boolean isUnique(Lesson lesson);
 }
