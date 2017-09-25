@@ -55,6 +55,7 @@ public class GroupController {
 	
 	@GetMapping(value = "/get-group")
 	public ResponseEntity<Group> getOneGroup(@RequestParam(required = true) String groupName) {
+		System.out.println(groupName);
 		Group groupDB = groupService.getGroup(groupName);
 		if(groupDB == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);

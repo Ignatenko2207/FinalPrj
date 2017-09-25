@@ -24,12 +24,10 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.google.common.net.MediaType;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -82,22 +80,21 @@ public class GroupControllerTest {
 
 	@Test
 	public void testGetGroup() {
-//		Group group = new Group();
-//		group.setGroupName("J16");
-//		group.setCourse(2);
-//		when(groupService.getGroup(Mockito.anyString())).thenReturn(group);
-//		HttpHeaders headers = new HttpHeaders();
-////		headers.setContentType(MediaType.PLAIN_TEXT_UTF_8);
-//		RequestEntity<Group> requestEntity = null;
-//		try {
-//			requestEntity = new RequestEntity<Group>(, headers, HttpMethod.GET, new URI("/get-group"));
-//		} catch (URISyntaxException e) {
-//			e.printStackTrace();
-//		}
-//		ResponseEntity<Group> responseEntyty = testRestTemplate.exchange(requestEntity, Group.class);
-//		assertEquals(HttpStatus.OK, responseEntyty.getStatusCode());
-//		
-//		verify(groupService, Mockito.times(1)).getGroup(Mockito.anyString());
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		when(groupService.getGroup(Mockito.anyString())).thenReturn(group);
+		HttpHeaders headers = new HttpHeaders();
+		RequestEntity<String> requestEntity = null;
+		try {
+			requestEntity = new RequestEntity<String>(headers, HttpMethod.GET, new URI("/group/get-group?groupName="+group.getGroupName()));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Group> responseEntyty = testRestTemplate.exchange(requestEntity, Group.class);
+		assertEquals(HttpStatus.OK, responseEntyty.getStatusCode());
+		
+		verify(groupService, Mockito.times(1)).getGroup(Mockito.anyString());
 		
 	}
 
