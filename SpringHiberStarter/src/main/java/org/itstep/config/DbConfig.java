@@ -26,17 +26,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DbConfig{
 
 
-//	@Value(value = "${username}")
-//	private String username;
-//
-//	@Value(value = "${password}")
-//	private String password;
+	//@Value(value = "${username}")
+	//private String username;
 
-//	@Value(value = "${driver-class-name}")
-//	private String driverClassName;
+	//@Value(value = "${password}")
+	//private String password;
+
+	//@Value(value = "${driver-class-name}")
+	//private String driverClassName;
 
 	//@Value(value = "${url}")
-//	private String url;
+	//private String url;
 
 	//@Value(value = "${db-option}")
 	//private String dbOption;
@@ -61,14 +61,33 @@ public class DbConfig{
 		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		return properties;
 	}
+/*
 
-    @Bean
-    public DataSource dataSource() {
-    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.ds.PGPoolingDataSource");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/Final");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("1723");
-        return dataSource;
-    }
+
+
+
+
+@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(url);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
+
+		return dataSource;
+
+	}
+
+*/
+
+	@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.postgresql.ds.PGPoolingDataSource");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/Final");
+		dataSource.setUsername("postgres");
+		dataSource.setPassword("1723");
+		return dataSource;
+	}
 }
