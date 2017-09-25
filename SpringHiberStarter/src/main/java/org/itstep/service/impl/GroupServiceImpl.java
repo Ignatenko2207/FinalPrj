@@ -16,7 +16,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public Group getGroup(String groupName) {
-		return groupDAO.getOne(groupName);
+		return groupDAO.findOne(groupName);
 	}
 
 	@Override

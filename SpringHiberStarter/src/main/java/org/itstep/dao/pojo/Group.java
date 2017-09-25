@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Group{
 	
 	@Id
-	@Column(name = "GROUP_NAME", nullable = false)
+	@Column(name = "GROUP_NAME")
 	private String groupName;
 	
 	@Column(name = "COURSE", nullable = false)

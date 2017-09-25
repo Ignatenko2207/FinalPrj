@@ -26,8 +26,7 @@ public class Teacher{
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@Column(name = "TEACHER_SUBJECT", nullable = false)
-	private String subject;
+
 	
 	public Teacher() {
 		

@@ -1,6 +1,6 @@
 package org.itstep.service.impl;
 
-import java.util.List;
+
 
 import org.itstep.dao.TeacherDAO;
 import org.itstep.dao.pojo.Teacher;
@@ -31,11 +31,6 @@ public class TeacherServiceImpl implements TeacherService{
 		teacherDAO.delete(teacher.getLogin());
 	}
 
-	@Override
-	public List<Teacher> findTeacherBySubject(String subject) {
-		
-		return teacherDAO.findTeachersBySubject(subject);
-	}
 
 	@Override
 	public boolean isUnique(Teacher teacher) {
