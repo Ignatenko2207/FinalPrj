@@ -12,12 +12,12 @@ public interface StudentDAO  extends JpaRepository<Student,String>{
 //TODO   create Queryes and crud operations
 
 
-    @Query(value = "SELECT * FROM STUDENTS INNER JOIN GROUPS ON COURSE = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM STUDENTS WHERE GROUPS_ID = ?1", nativeQuery = true)
     public List<Student> getAllByGroup(String group);
+
     @Query(value = "SELECT * FROM STUDENTS WHERE COURSE =?1",nativeQuery = true)
     public List<Student> getAllByCourse(int course);   // SQL join request
-    @Query(value = "SELECT * FROM STUDENTS WHERE LOGIN =?1",nativeQuery = true)
-    public List<Student> getByLogin(String login);
+
 
 
 
