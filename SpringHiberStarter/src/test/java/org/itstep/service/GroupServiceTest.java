@@ -24,8 +24,6 @@ public class GroupServiceTest {
 	@Autowired
 	GroupServiceImpl groupServiceImpl;
 	
-	@Autowired
-	GroupDAO groupDAO;
 	
 	@Test
 	public void testCreateAndUpdate() {
@@ -44,7 +42,7 @@ public class GroupServiceTest {
 		group.setCourse(1);
 		group.setGroupName("1");
 		Group groupGag = groupServiceImpl.createAndUpdateGroup(group);
-		Group groupDB = groupDAO.findOne(group.getGroupName());
+		Group groupDB = groupServiceImpl.getGroup(group.getGroupName());
 		assertNotNull(groupDB);
 		assertEquals(group.getGroupName(), groupDB.getGroupName());
 		groupServiceImpl.deleteGroup(group.getGroupName());
@@ -71,7 +69,7 @@ public class GroupServiceTest {
 		group.setGroupName("1");
 		groupServiceImpl.createAndUpdateGroup(group);
 		groupServiceImpl.deleteGroup(group.getGroupName());
-		Group groupDB = groupDAO.findOne(group.getGroupName());
+		Group groupDB = groupServiceImpl.getGroup(group.getGroupName());
 		assertNull(groupDB);
 	}
 

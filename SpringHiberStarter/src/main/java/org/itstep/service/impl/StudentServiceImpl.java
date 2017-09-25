@@ -6,12 +6,12 @@ import javax.management.Query;
 
 import org.itstep.dao.StudentDAO;
 import org.itstep.dao.pojo.Student;
-import org.itstep.service.StudentSevice;
+import org.itstep.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl implements StudentSevice{
+public class StudentServiceImpl implements StudentService{
 	@Autowired
 	StudentDAO studentDAO;
 	
@@ -23,8 +23,8 @@ public class StudentServiceImpl implements StudentSevice{
 	}
 	
 	@Override
-	public void deleteStudent(Student student){
-		studentDAO.delete(student.getLogin());
+	public void deleteStudent(String login){
+		studentDAO.delete(login);
 	}
 	
 	@Override
@@ -35,6 +35,19 @@ public class StudentServiceImpl implements StudentSevice{
 	@Override
 	public List<Student> findAllStudentsByCourse(Integer course){
 		return studentDAO.findAllStudentsByCourse(course);
+	}
+
+	@Override
+	public Student getStudent(String login) {
+		return studentDAO.findOne(login);
+	}
+
+	@Override
+	public boolean isUnique(Student student) {
+		if(studentDAO.findOne(student.getLogin()) != null) {
+			return false;
+		}
+		return true;
 	}
 	
 		

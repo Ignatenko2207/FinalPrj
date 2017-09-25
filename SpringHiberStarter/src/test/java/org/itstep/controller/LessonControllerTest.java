@@ -23,9 +23,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LessonControllerTest {
 	
-	@MockBean
-	LessonDAO lessonDAO;
-	
 	@MockBean 
 	LessonService lessonService;
 		
@@ -53,7 +50,7 @@ public class LessonControllerTest {
 		lesson.setTeacher("The Teacher");
 		Mockito.when(lessonService.saveAndUpdate(Mockito.<Lesson>any())).thenReturn(null);
 		Mockito.when(lessonService.isUnique(Mockito.<Lesson>any())).thenReturn(true);
-		Mockito.when(lessonDAO.findOne(Mockito.<Long>any())).thenReturn(null);
+		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(null);
 		lessonService.saveAndUpdate(lesson);
 		Mockito.verify(lessonService , Mockito.times(1)).saveAndUpdate(Mockito.<Lesson>any());
 		lessonService.delete(lesson.getLessonId());
@@ -71,7 +68,7 @@ public class LessonControllerTest {
 		lesson.setTeacher("The Teacher");
 		Mockito.when(lessonService.saveAndUpdate(Mockito.<Lesson>any())).thenReturn(null);
 		Mockito.when(lessonService.isUnique(Mockito.<Lesson>any())).thenReturn(true);
-		Mockito.when(lessonDAO.findOne(Mockito.<Long>any())).thenReturn(null);
+		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(null);
 		lessonService.saveAndUpdate(lesson);
 		Mockito.verify(lessonService , Mockito.times(1)).saveAndUpdate(Mockito.<Lesson>any());
 	}
@@ -86,9 +83,9 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
-		Mockito.when(lessonDAO.findOne(Mockito.<Long>any())).thenReturn(lesson);
-		lessonDAO.findOne(lesson.getLessonId());
-		Mockito.verify(lessonDAO, Mockito.times(1)).findOne(Mockito.<Long>any());
+		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(lesson);
+		lessonService.getLesson(lesson.getLessonId());
+		Mockito.verify(lessonService, Mockito.times(1)).getLesson(Mockito.<Long>any());
 		
 	}
 	@Test

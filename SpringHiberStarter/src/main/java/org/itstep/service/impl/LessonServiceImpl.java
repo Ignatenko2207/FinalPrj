@@ -64,5 +64,10 @@ public class LessonServiceImpl implements LessonService{
 		return lessonDAO.getLessonsForTeacherForPeriod(teacherLogin, start, end);
 	}
 
+	@Override
+	public Lesson getLesson(Long lessonId) {
+		return lessonDAO.findOne(lessonId);
+	}
+
 
 }

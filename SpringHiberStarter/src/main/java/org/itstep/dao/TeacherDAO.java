@@ -9,7 +9,4 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface TeacherDAO extends JpaRepository<Teacher, String>{
 	
-	@Query(value = "SELECT * FROM GROUPS WHERE TEACHER = ?1", nativeQuery = true)
-	public List<Group> findGroupsByTeacher(Teacher teacher);
-	
 }

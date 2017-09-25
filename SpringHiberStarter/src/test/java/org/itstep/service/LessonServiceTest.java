@@ -40,8 +40,6 @@ public class LessonServiceTest {
 	GroupServiceImpl groupServiceImpl;
 	@Autowired
 	GroupDAO groupDAO;
-	@Autowired
-	LessonDAO lessonDAO;
 	@Test
 	public void testSaveAndUpdate() {
 		Lesson lesson = new Lesson();
@@ -54,7 +52,7 @@ public class LessonServiceTest {
 		lesson.setTeacher("The Teacher");
 		Lesson lessonDB = lessonServiceImpl.saveAndUpdate(lesson);
 		assertNotNull(lessonDB);
-		Lesson lessonDBChecker = lessonDAO.findOne(lessonDB.getLessonId());
+		Lesson lessonDBChecker = lessonServiceImpl.getLesson(lessonDB.getLessonId());
 		assertNotNull(lessonDBChecker);
 		assertEquals(lessonDB.getLessonId(), lessonDBChecker.getLessonId());
 		assertEquals(lessonDB.getLessonId(), lessonDBChecker.getLessonId());
@@ -74,7 +72,7 @@ public class LessonServiceTest {
 		Lesson lessonDB = lessonServiceImpl.saveAndUpdate(lesson);
 		Long id  = lessonDB.getLessonId();
 		lessonServiceImpl.delete(id);
-		assertNull(lessonDAO.findOne(id));
+		assertNull(lessonServiceImpl.getLesson(id));
 		
 	}
 

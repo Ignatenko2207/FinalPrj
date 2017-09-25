@@ -28,20 +28,18 @@ public class LessonController {
 	@Autowired
 	LessonService lessonService;
 	
-	@Autowired
-	LessonDAO lessonDAO;
 
 
 	@GetMapping(value = "/get-one-by-id")
 	public ResponseEntity<Lesson> getLesson(Long lessonId) {
-		Lesson lessonDB = lessonDAO.findOne(lessonId);
+		Lesson lessonDB = lessonService.getLesson(lessonId);
 		if (lessonDB != null)
 			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping()
 	public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson) {
 		if (lessonService.isUnique(lesson)) {
 			Lesson lessonDB = lessonService.saveAndUpdate(lesson);
@@ -51,7 +49,7 @@ public class LessonController {
 	}
 	
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping()
 	public ResponseEntity<Lesson> updateLesson(@RequestBody Lesson lesson) {
 		if (!lessonService.isUnique(lesson)) {
 			Lesson lessonDB = lessonService.saveAndUpdate(lesson);

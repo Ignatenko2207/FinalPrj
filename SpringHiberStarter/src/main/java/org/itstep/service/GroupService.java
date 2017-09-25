@@ -6,7 +6,8 @@ import org.itstep.dao.pojo.Group;
 import org.itstep.dao.pojo.Group;
 
 public interface GroupService {
-
+	
+	public Group getGroup(String groupName);
 
 	public Group createAndUpdateGroup(Group group);
 

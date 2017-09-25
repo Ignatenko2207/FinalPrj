@@ -7,12 +7,12 @@ import org.itstep.dao.pojo.Student;
 import org.itstep.dao.pojo.Teacher;
 
 public interface TeacherService {
-
+	
+	public Teacher getTeacher(String login);
 	
 	public Teacher createAndUpdateTeacher(Teacher teacher);
 	
-	public void deleteTeacher(Teacher teacher);
+	public void deleteTeacher(String login);
 
-	public List<Group> findGroupsByTeacher(Teacher teacher);
-	
+	boolean isUnique(Teacher teacher);
 }

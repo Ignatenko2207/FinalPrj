@@ -35,9 +35,6 @@ public class GroupControllerTest {
 	@MockBean
 	GroupService groupService;
 	
-	@MockBean
-	GroupDAO groupDAO;
-	
 	@Autowired
 	TestRestTemplate testRestTemplate;
 	
@@ -49,11 +46,9 @@ public class GroupControllerTest {
 		group.setCourse(2);
 		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
 		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
-		Mockito.when(groupDAO.findOne(Mockito.<String>any())).thenReturn(null);
+		Mockito.when(groupService.getGroup(Mockito.<String>any())).thenReturn(null);
 		groupService.createAndUpdateGroup(group);
-		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
-		groupService.deleteGroup(group.getGroupName());
-		
+		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);		
 	}
 	
 	@Test
@@ -63,7 +58,7 @@ public class GroupControllerTest {
 		group.setCourse(2);
 		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
 		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
-		Mockito.when(groupDAO.findOne(Mockito.<String>any())).thenReturn(group);
+		Mockito.when(groupService.getGroup(Mockito.<String>any())).thenReturn(group);
 		groupService.createAndUpdateGroup(group);
 		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
 	}
@@ -73,9 +68,9 @@ public class GroupControllerTest {
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
-		Mockito.when(groupDAO.findOne(Mockito.anyString())).thenReturn(group);
-		groupDAO.findOne(group.getGroupName());
-		Mockito.verify(groupDAO, Mockito.times(1)).findOne(Mockito.<String>any());
+		Mockito.when(groupService.getGroup(Mockito.anyString())).thenReturn(group);
+		groupService.getGroup(group.getGroupName());
+		Mockito.verify(groupService, Mockito.times(1)).getGroup(Mockito.<String>any());
 	}
 	
 

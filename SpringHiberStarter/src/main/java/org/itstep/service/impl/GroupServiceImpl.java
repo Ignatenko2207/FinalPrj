@@ -37,6 +37,11 @@ public class GroupServiceImpl implements GroupService{
 		return true;
 	}
 
+	@Override
+	public Group getGroup(String groupName) {
+		return groupDAO.findOne(groupName);
+	}
+
 
 
 }
