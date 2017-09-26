@@ -1,12 +1,8 @@
 package org.itstep.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,13 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -35,16 +27,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GroupControllerTest {
-
-	@Autowired
-	private TestRestTemplate testRestTemplate;
 	
 	@MockBean
 	private GroupService groupService;
 	
 	@InjectMocks
 	private GroupController groupController;
-	
 	
 	@Spy
 	List<Group> groups= new ArrayList<Group>();
@@ -71,7 +59,6 @@ public class GroupControllerTest {
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 	}
 
-	
 	@Test
 	public void testUpdateGroup() {
 		Group group = groups.get(1);
@@ -90,7 +77,7 @@ public class GroupControllerTest {
 
 	@Test
 	public void testGetGroupsByCourse() {
-		List<Group> returnedGroups = new ArrayList(Arrays.asList(groups.get(1), groups.get(2)));
+		List<Group> returnedGroups = new ArrayList<Group>(Arrays.asList(groups.get(1), groups.get(2)));
 		when(groupService.findAllByCourse(2)).thenReturn(returnedGroups);
 		ResponseEntity<List<Group>> responseEntity = groupController.getGroupsByCourse(2);
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());

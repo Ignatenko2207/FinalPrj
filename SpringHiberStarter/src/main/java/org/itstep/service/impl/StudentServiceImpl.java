@@ -2,16 +2,14 @@ package org.itstep.service.impl;
 
 import java.util.List;
 
-import javax.management.Query;
-
 import org.itstep.dao.StudentDAO;
 import org.itstep.dao.pojo.Student;
-import org.itstep.service.StudentSevice;
+import org.itstep.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl implements StudentSevice{
+public class StudentServiceImpl implements StudentService{
 	@Autowired
 	StudentDAO studentDAO;
 	
@@ -39,8 +37,14 @@ public class StudentServiceImpl implements StudentSevice{
 	public List<Student> findAllStudentsByCourse(int course){
 		return studentDAO.findAllStudentsByCourse(course);
 	}
+
+	@Override
+	public boolean isUnique(Student student) {
+		if(studentDAO.findOne(student.getLogin()) == null) {
+			return false;
+		}
+		return true;
+	}
 	
-		
-		
 	
 }

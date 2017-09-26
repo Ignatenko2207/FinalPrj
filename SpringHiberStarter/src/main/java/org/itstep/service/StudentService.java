@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.itstep.dao.pojo.Student;
 
-public interface StudentSevice {
+public interface StudentService {
 
 	public Student getStudent(String login);
 	
@@ -15,4 +15,7 @@ public interface StudentSevice {
 	public List<Student> findStudentsByGroup(String group);
 	
 	public List<Student> findAllStudentsByCourse(int course);
+	
+	public boolean isUnique(Student student);
+	
 }
