@@ -60,19 +60,23 @@ public class GroupControllerTest {
 	@Test
 	public void testUpdateGroup() {
 		
-//		Group group = new Group("J16",4);
-//		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
-//		when(groupService.isUnique(Mockito.<Group>any())).thenReturn(false);
+//		Group group = new Group();
+//		group.setGroupName("J16");
+//		group.setCourse(2);
+//		when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
+//		when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
+//		when(groupService.getGroup(Mockito.<String>any())).thenReturn(group);
+//		
 //		RequestEntity<Group> reqEntity = null;
 //		try {
 //			reqEntity = new RequestEntity<Group>(group, HttpMethod.PUT, new URI("/group"));
 //		} catch (URISyntaxException e) {
 //			e.printStackTrace();
 //		}
-//		ResponseEntity<Group> respEntyty = testRestTemplate.exchange(reqEntity, Group.class);
-//		assertEquals(HttpStatus.OK, respEntyty.getStatusCode());
+//		ResponseEntity<Group> respEntity = testRestTemplate.exchange(reqEntity, Group.class);
+//		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 //		
-//		verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
+//		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
 	}
 
 	@Test
