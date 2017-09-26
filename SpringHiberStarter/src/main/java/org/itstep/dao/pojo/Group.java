@@ -23,4 +23,11 @@ public class Group{
 
 	public Group() {
 	}
+
+	public Group(String groupName, int course) {
+		this.groupName = groupName;
+		this.course = course;
+	}
+	
+	
 }

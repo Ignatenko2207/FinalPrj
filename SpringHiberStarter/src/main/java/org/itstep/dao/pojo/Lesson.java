@@ -41,5 +41,16 @@ public class Lesson{
 	
 	public Lesson() {
 	}
+
+	public Lesson(Long lessonStart, Long length, String teacher, String group, String room, String subject) {
+		this.lessonStart = lessonStart;
+		this.length = length;
+		this.teacher = teacher;
+		this.group = group;
+		this.room = room;
+		this.subject = subject;
+	}
+	
+	
 	
 }

@@ -25,39 +25,25 @@ public class LessonServiceImpl implements LessonService{
 	}
 
 	@Override
-	public Lesson getOneByGroupAndStartTime(String group, Long startTime) {
-		return lessonDAO.getOneByGroupAndStartTime(group, startTime);
-	}
-
-	@Override
 	public Lesson getOneByTeacherAndStartTime(String teacher, Long startTime) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getOneByTeacherAndStartTime(teacher, startTime);
 	}
 
 	@Override
 	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getLessonsForGroupForPeriod(group, start, end);
 	}
 
-	@Override
-	public List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	@Override
 	public boolean isUnique(Lesson lesson) {
 		if(lessonDAO.getOneByTeacherAndStartTime(lesson.getTeacher(), lesson.getLessonStart()) != null) {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Lesson getLesson(Long lessonId) {
+		return lessonDAO.getOne(lessonId);
 	}
 }
