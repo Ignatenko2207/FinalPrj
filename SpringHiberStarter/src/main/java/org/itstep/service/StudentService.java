@@ -10,7 +10,7 @@ public interface StudentService {
 	
 	public Student createAndUpdateStudent(Student student);
 	
-	public void deleteStudent(Student student);
+	public void deleteStudent(String login);
 
 	public List<Student> findStudentsByGroup(String group);
 	
