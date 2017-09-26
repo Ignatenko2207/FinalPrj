@@ -33,7 +33,7 @@ public class GroupController {
 	public ResponseEntity<Group> createGroup(@RequestBody Group group) {
 		if(groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
-			if(groupDB != null) {
+			if(groupDB == null) {
 				return new ResponseEntity<Group>(HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Group>(groupDB, HttpStatus.CREATED);
