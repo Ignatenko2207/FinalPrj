@@ -111,5 +111,4 @@ public class LessonControllerTest {
 		assertEquals(HttpStatus.OK, responseEntityList.getStatusCode());
 	}
 	
-
 }

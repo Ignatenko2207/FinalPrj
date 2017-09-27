@@ -1,5 +1,7 @@
 package org.itstep.controller;
 
+import java.util.List;
+
 import org.itstep.dao.pojo.Student;
 import org.itstep.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +63,23 @@ public class StudentController {
 		}
 		return new ResponseEntity(HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/find-students-by-group")
+	public ResponseEntity<List<Student>> findStudentsByGroup(String group){
+		List<Student> studentsInDb = studentService.findStudentsByGroup(group);
+		if(studentsInDb != null)
+			return new ResponseEntity<List<Student>>(studentsInDb, HttpStatus.OK);
+		
+		return new ResponseEntity(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value = "/find-students-by-course")
+	private ResponseEntity<List<Student>> findAllStudentsByCourse(int course) {
+		List<Student> studentsInDb = studentService.findAllStudentsByCourse(course);
+		if(studentsInDb != null)
+			return new ResponseEntity<List<Student>>(studentsInDb, HttpStatus.OK);
+		
+		return new ResponseEntity(HttpStatus.NOT_FOUND);
+	}
+	
 }

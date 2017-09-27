@@ -32,4 +32,15 @@ public class Student{
 	
 	public Student() {
 	}
+
+	public Student(String login, String password, String firstName, String lastName, String studentGroup) {
+		super();
+		this.login = login;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.studentGroup = studentGroup;
+	}
+	
+	
 }

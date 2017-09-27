@@ -69,6 +69,7 @@ public class LessonController {
 		Lesson lessonDB = lessonService.getOneByTeacherAndStartTime(teacher, startTime);
 		if (lessonDB != null)
 			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);
+		
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
@@ -77,6 +78,7 @@ public class LessonController {
 		List<Lesson> lessonsDB = lessonService.getLessonsForGroupForPeriod(group, startTime, length);
 		if (lessonsDB != null)
 			return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
+		
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
