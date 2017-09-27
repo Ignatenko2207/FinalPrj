@@ -92,8 +92,8 @@ public class LessonController {
 	// get lessons by course and time period(long values)
 
 	@GetMapping(value = "/get-lessons-by-group-and-period")
-	public ResponseEntity<List<Lesson>> getLessonsByGroupAndPeriod(String teacher, Long startTime, Long length) {
-		List<Lesson> lessonsDB = lessonService.getLessonsForGroupForPeriod(teacher, startTime, length);
+	public ResponseEntity<List<Lesson>> getLessonsByGroupAndPeriod(String group, Long startTime, Long length) {
+		List<Lesson> lessonsDB = lessonService.getLessonsForGroupForPeriod(group, startTime, length);
 		if (lessonsDB != null)
 			return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -101,7 +101,7 @@ public class LessonController {
 
 
 	@GetMapping(value = "/get-lessons-by-course-and-period")
-	public ResponseEntity<List<Lesson>> getLessonsByCourseAndPeriod(Integer course, Long startTime, Long length) {
+	public ResponseEntity<List<Lesson>> getLessonsByCourseAndPeriod(int course, Long startTime, Long length) {
 		List<Lesson> lessonsDB = lessonService.getLessonsForCourseForPeriod(course, startTime, length);
 		if (lessonsDB != null) {
 			return new ResponseEntity<List<Lesson>>(lessonsDB, HttpStatus.OK);
