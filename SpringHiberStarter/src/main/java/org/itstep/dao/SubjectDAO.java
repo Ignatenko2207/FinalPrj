@@ -1,7 +1,7 @@
 package org.itstep.dao;
 
-import javax.security.auth.Subject;
 
+import org.itstep.dao.pojo.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

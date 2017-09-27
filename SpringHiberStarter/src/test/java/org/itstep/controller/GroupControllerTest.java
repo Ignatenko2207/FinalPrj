@@ -1,9 +1,12 @@
 package org.itstep.controller;
 
+
 import static org.junit.Assert.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.itstep.App;
 import org.itstep.dao.GroupDAO;
@@ -19,6 +22,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -33,20 +37,16 @@ public class GroupControllerTest {
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 	
-//	@MockBean
-//	private GroupService groupService;
-//	
-//	@MockBean
-//	GroupDAO groupDAO;
-//	
+	@MockBean
+	private GroupService groupService;
+	
 	@Test
 	public void testSaveGroup() {
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
-//		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
-//		when(groupService.isUnique(group)).thenReturn(true);
-//		when(groupDAO.findOne(group.getGroupName())).thenReturn(null);
+		when(groupService.createAndUpdateGroup(group)).thenReturn(group);
+		when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
 		RequestEntity<Group> reqEntity = null;
 		try {
 			reqEntity = new RequestEntity<Group>(group, HttpMethod.POST, new URI("/group"));
@@ -56,7 +56,7 @@ public class GroupControllerTest {
 		ResponseEntity<Group> respEntyty = testRestTemplate.exchange(reqEntity, Group.class);
 		assertEquals(HttpStatus.CREATED, respEntyty.getStatusCode());
 		
-//		verify(groupService, Mockito.times(1)).createAndUpdateGroup(group);
+		verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
 	}
 
 	@Test
@@ -67,8 +67,24 @@ public class GroupControllerTest {
 	public void testGetGroup() {
 	}
 
+//	List<Group> findAllByCourse(int course);
+	
 	@Test
 	public void testGetGroupsByCourse() {
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		List<Group> groups = Arrays.asList(group);
+		when(groupService.findAllByCourse(Mockito.anyInt())).thenReturn(groups);
+		RequestEntity<String> requestEntity = null;
+		try {
+			requestEntity = new RequestEntity<String>(HttpMethod.GET, new URI("/group/get-grouplist?course="+group.getCourse()));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<List<Group>> response = testRestTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<Group>>() {
+		});
+		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 
 	@Test
@@ -76,4 +92,3 @@ public class GroupControllerTest {
 	}
 
 }
-
