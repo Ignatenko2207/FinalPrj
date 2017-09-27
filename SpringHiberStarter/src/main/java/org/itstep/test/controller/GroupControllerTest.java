@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.itstep.App;
@@ -21,6 +22,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -100,42 +102,37 @@ public class GroupControllerTest {
 
 	@Test
 	public void testGetGroupsByCourse() {
-//		Group group = new Group();
-//		group.setGroupName("J16");
-//		group.setCourse(2);
-//		//Group groupFromDB = groupService.createAndUpdateGroup(group);
-//		List<Group> groupsDB = groupService.findAllByCourse(group.getCourse());
-//		when(groupService.findAllByCourse(Mockito.anyInt())).thenReturn(groupsDB);
-//		RequestEntity<Group> requestEntity = null;
-//		try {
-//			requestEntity = new RequestEntity<Group>(group, HttpMethod.GET, new URI("/get-grouplist"));
-//		} catch (URISyntaxException e) {
-//			e.printStackTrace();
-//		}
-//		ResponseEntity<Group> responseEntyty = testRestTemplate.exchange(requestEntity, Group.class);
-//		assertEquals(HttpStatus.CREATED, responseEntyty.getStatusCode());
-//		
-//		verify(groupService, Mockito.times(1)).findAllByCourse(Mockito.anyInt());
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		List<Group> groups = Arrays.asList(group);
+		when(groupService.findAllByCourse(Mockito.anyInt())).thenReturn(groups);
+		RequestEntity<String> requestEntity = null;
+		try {
+			requestEntity = new RequestEntity<String>(HttpMethod.GET, new URI("/group/get-grouplist?course="+group.getCourse()));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<List<Group>> response = testRestTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<Group>>() {
+		});
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	
 	}
-
+	
 	@Test
 	public void testDeleteGroup() {
-//		Group group = new Group();
-//		group.setGroupName("J16");
-//		group.setCourse(2);
-//		Mockito.doNothing().when(groupService).deleteGroup(Mockito.anyString());
-//		RequestEntity requestEntity = null;
-//		try {
-//			requestEntity = new RequestEntity(group, HttpMethod.DELETE, new URI("/group"));
-//		} catch (URISyntaxException e) {
-//			e.printStackTrace();
-//		}
-//		ResponseEntity responseEntyty = testRestTemplate.exchange(requestEntity, Group.class);
-//		assertEquals(HttpStatus.OK, responseEntyty.getStatusCode());
-//		
-//		verify(groupService, Mockito.times(1)).deleteGroup(Mockito.anyString());
-
+		Group group = new Group();
+		group.setGroupName("J16");
+		group.setCourse(2);
+		Mockito.doNothing().when(groupService).deleteGroup(Mockito.<String>any());
+		RequestEntity<String> requestEntity = null;
+		try {
+			requestEntity = new RequestEntity<String>(HttpMethod.DELETE, new URI("/group?groupName="+group.getGroupName()));
+		} catch (URISyntaxException e) {
 	}
-
+		ResponseEntity<Group> responseEntyty = testRestTemplate.exchange(requestEntity, Group.class);
+		assertEquals(HttpStatus.OK, responseEntyty.getStatusCode());
+		
+		verify(groupService, Mockito.times(1)).deleteGroup(Mockito.anyString());
 }
-
+}
