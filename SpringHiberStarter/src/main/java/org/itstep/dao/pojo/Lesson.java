@@ -1,6 +1,5 @@
 package org.itstep.dao.pojo;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ import lombok.Setter;
 public class Lesson{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "ID", nullable = false)
 	private Long lessonId;
 	
@@ -30,7 +29,7 @@ public class Lesson{
 	
 	@Column(name = "TEACHER", nullable = false)
 	private String teacher;
-	
+
 	@Column(name = "GROUP_NAME", nullable = false)
 	private String group;
 	
@@ -41,6 +40,5 @@ public class Lesson{
 	private String subject;
 	
 	public Lesson() {
-		// TODO Auto-generated constructor stub
 	}
 }

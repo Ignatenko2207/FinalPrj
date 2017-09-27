@@ -1,0 +1,2 @@
+DB: POSTGRESQL !!!
+v1.2

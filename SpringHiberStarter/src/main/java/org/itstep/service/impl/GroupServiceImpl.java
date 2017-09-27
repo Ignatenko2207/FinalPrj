@@ -36,10 +36,10 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public boolean isUnique(Group group) {
-		if(groupDAO.getOne(group.getGroupName()) != null) {
-			return false;
+		if(groupDAO.findOne(group.getGroupName()) == null) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 }

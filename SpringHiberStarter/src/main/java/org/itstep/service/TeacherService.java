@@ -10,5 +10,4 @@ public interface TeacherService {
 	
 	public void deleteTeacher(Teacher teacher);
 	
-	public boolean isUnique(Teacher teacher);
 }
