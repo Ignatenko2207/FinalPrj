@@ -23,8 +23,7 @@ public class GroupController {
 
 
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-
+    @PostMapping
     public ResponseEntity<Group> createGroup(@RequestBody Group group) {
         if(groupService.isUnique(group)) {
             Group groupDB = groupService.createAndUpdateGroup(group);
@@ -40,25 +39,15 @@ public class GroupController {
 
 
     @PutMapping
-
     public ResponseEntity<Group> updateGroup(Group group) {
-
         if(!groupService.isUnique(group)) {
-
             Group groupDB = groupService.createAndUpdateGroup(group);
-
             if(groupDB == null) {
-
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
-
             }
-
             return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
-
         }
-
         return new ResponseEntity(HttpStatus.NOT_FOUND);
-
     }
 
 
@@ -83,13 +72,13 @@ public class GroupController {
 
 
 
-    @GetMapping(value = "/get-grouplist")
+    @GetMapping(value = "/get-groupList")
 
-    public ResponseEntity<List<Group>> getOneGroup(int course) {
+    public ResponseEntity<List<Group>> getGroups(int course) {
 
         List<Group> groupList = groupService.findAllByCourse(course);
 
-        return new ResponseEntity<List<Group>>(groupList, HttpStatus.CREATED);
+        return new ResponseEntity<List<Group>>(groupList, HttpStatus.OK);
 
 	}
 

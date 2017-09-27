@@ -18,7 +18,7 @@ public class Group {
     @Id
     @Column(name = "GROUP_NAME")
     private String groupName;
-    @Column(name = "COURCE")
+    @Column(name = "COURSE")
     private int course;
 
 
