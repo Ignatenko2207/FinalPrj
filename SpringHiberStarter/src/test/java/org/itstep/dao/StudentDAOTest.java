@@ -34,8 +34,4 @@ public class StudentDAOTest {
   
  }
  
- @Test
- public void testFindStudentsByGroup() {
- }
-
 }

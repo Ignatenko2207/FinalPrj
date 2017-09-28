@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentServiceImpl implements StudentService{
+	
 	@Autowired
 	StudentDAO studentDAO;
 	
@@ -20,7 +21,7 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public Student createAndUpdateStudent(Student student){
-		return studentDAO.save(student);
+		return studentDAO.saveAndFlush(student);
 	}
 	
 	@Override
