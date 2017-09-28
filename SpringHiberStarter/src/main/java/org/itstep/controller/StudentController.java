@@ -26,7 +26,7 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 	
-	@GetMapping(value = "/get-one-by-id")
+	@GetMapping(value = "/get-one-by-login")
 	public ResponseEntity<Student> getStudent(String login) {
 		Student studentInDb = studentService.getStudent(login);
 		if(studentInDb != null) {
