@@ -25,7 +25,7 @@ public class StudentDAOTest {
   student.setPassword("123456");
   student.setFirstName("Alex");
   student.setLastName("lastName");
-  student.setStudentGroup("someGroup");
+  student.setGroup("someGroup");
   Student studentDB = studentDAO.save(student);
   assertNotNull(studentDB);
   Student checkedStudent = studentDAO.findOne(studentDB.getLogin());

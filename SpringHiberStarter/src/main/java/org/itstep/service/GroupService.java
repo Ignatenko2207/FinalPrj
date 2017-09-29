@@ -1,19 +1,20 @@
 package org.itstep.service;
 
+import org.itstep.dao.pojo.Group;
+
 import java.util.List;
 
-import org.itstep.dao.pojo.Group;
-import org.itstep.dao.pojo.Group;
-
 public interface GroupService {
+    Group getGroup(String groupName);
 
-	public Group getGroup(String groupName);
+    Group createAndUpdateGroup(Group group);
 
-	public Group createAndUpdateGroup(Group group);
+    void deleteGroup(String groupName);
 
-	public void deleteGroup(String groupName);
 
-	List<Group> findAllByCourse(int course);
-	
-	public boolean isUnique(Group group);
+    List<Group> findAllByCourse(int course);
+
+    boolean isUnique(Group group);
 }
+
+

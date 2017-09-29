@@ -1,14 +1,19 @@
 package org.itstep.dao;
 
+import org.itstep.dao.pojo.Group;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import org.itstep.dao.pojo.Group;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GroupDAO extends JpaRepository<Group, String>{
+public interface GroupDAO  extends JpaRepository<Group,String>{
 
-	List<Group> findAllByCourse(int course);
+
+
+
+    @Query(value = "SELECT * FROM GROUPS WHERE COURSE = ?1",nativeQuery = true)
+    List<Group> findAllByCourse(int course);
 }

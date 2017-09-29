@@ -15,7 +15,7 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public Teacher createAndUpdateTeacher(Teacher teacher) {
+	public Teacher createAndUpdate(Teacher teacher) {
 		return teacherDAO.saveAndFlush(teacher);
 	}
 
@@ -24,4 +24,6 @@ public class TeacherServiceImpl implements TeacherService {
 		teacherDAO.delete(teacher.getLogin());
 		
 	}
+
+
 }

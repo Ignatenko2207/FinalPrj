@@ -21,7 +21,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -66,8 +65,6 @@ public class GroupControllerTest {
 	public void testGetGroup() {
 	}
 
-//	List<Group> findAllByCourse(int course);
-	
 	@Test
 	public void testGetGroupsByCourse() {
 		Group group = new Group();

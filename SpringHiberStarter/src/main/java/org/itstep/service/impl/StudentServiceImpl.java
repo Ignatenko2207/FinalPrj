@@ -6,41 +6,50 @@ import javax.management.Query;
 
 import org.itstep.dao.StudentDAO;
 import org.itstep.dao.pojo.Student;
-import org.itstep.service.StudentSevice;
+import org.itstep.service.StudentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl implements StudentSevice{
+public class StudentServiceImpl implements StudentService{
 	@Autowired
+
 	StudentDAO studentDAO;
 	
+
+
 	@Override
-	public Student getStudent(String login){
+	public Student findOneByLogin(String login) {
 		return studentDAO.findOne(login);
 	}
 
 	@Override
-	public Student createAndUpdateStudent(Student student){
-		return studentDAO.save(student);
-	}
-	
-	@Override
-	public void deleteStudent(Student student){
-		studentDAO.delete(student.getLogin());
-	}
-	
-	@Override
-	public List<Student> findStudentsByGroup(String group){
-		return studentDAO.findStudentsByGroup(group);
+	public Student createAndUpdate(Student student) {
+		return studentDAO.saveAndFlush(student);
 	}
 
 	@Override
-	public List<Student> findAllStudentsByCourse(int course){
-		return studentDAO.findAllStudentsByCourse(course);
+	public void delete(Student student) {
+		studentDAO.delete(student);
 	}
-	
-		
-		
-	
+
+	@Override
+	public List<Student> getAllByCourse(int course) {
+		return studentDAO.getAllByCourse(course);
+	}
+
+	@Override
+	public List<Student> getAllByGroup(String groups) {
+		return studentDAO.getAllByGroup(groups);
+	}
+
+	@Override
+	public boolean isUnique(String login) {
+		if(studentDAO.findOne(login) == null) {
+			return true;
+		}
+		return false;
+	}
 }
