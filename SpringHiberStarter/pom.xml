@@ -13,8 +13,9 @@
   <properties>
 
 		<jdk.version>1.8</jdk.version>
-        
-        <product.version>0.1-SNAPSHOT</product.version>
+          <skipTests>true</skipTests>
+
+      <product.version>0.1-SNAPSHOT</product.version>
         <lib.property>lib</lib.property>
         <our.lib.groupIds.property>org.itstep</our.lib.groupIds.property>
         <output.directory>../build</output.directory>
@@ -78,6 +79,7 @@
     		<version>2.7</version>
     		<configuration>
         		<delimiters>
+                    <skipTests>${skipTests}</skipTests>
             		<delimiter>@</delimiter>
         		</delimiters>
         		<useDefaultDelimiters>false</useDefaultDelimiters>

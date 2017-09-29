@@ -25,20 +25,31 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ConfigurationProperties
 public class DbConfig{
 
-	@Value(value = "${username}")
+
+	@Value(value = "${spring.datasource.username}")
 	private String username;
 
-	@Value(value = "${password}")
+	@Value(value = "${spring.datasource.password}")
 	private String password;
 
-	@Value(value = "${driver-class-name}")
+	@Value(value = "${spring.datasource.driver-class-name}")
 	private String driverClassName;
 
-	@Value(value = "${url}")
+	@Value(value = "${spring.datasource.url}")
 	private String url;
 
-	@Value(value = "${db-option}")
+	@Value(value = "${spring.datasource.db-option}")
 	private String dbOption;
+
+	@Value(value = "${schema}")
+	private String schema;
+
+	@Value(value = "${spring.datasource.dialect}")
+	private String dialect;
+
+	@Value(value = "${data-source-class-name}")
+	private String dataSourse;
+
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -57,17 +68,54 @@ public class DbConfig{
 
 	Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", dbOption);
+		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		properties.setProperty("hibernate.dialect", dialect);
 		return properties;
 	}
+/*
 
-    @Bean
-    public DataSource dataSource() {
-    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
-    }
+
+
+
+
+@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(url);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
+
+		return dataSource;
+
+	}
+@Bean
+public DataSource dataSource() {
+	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	dataSource.setDriverClassName("org.postgresql.ds.PGPoolingDataSource");
+	dataSource.setUrl("jdbc:postgresql://localhost:5432/Final");
+	dataSource.setSchema("public");
+	dataSource.setUsername("postgres");
+	dataSource.setPassword("1723");
+	return dataSource;
+}
+
+
+
+
+
+
+*/
+	@Bean
+		public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(url);
+		dataSource.setSchema(schema);
+
+		return dataSource;
+	}
+
 }

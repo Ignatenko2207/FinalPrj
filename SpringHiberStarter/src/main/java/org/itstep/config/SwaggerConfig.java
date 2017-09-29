@@ -26,6 +26,7 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any()).build();
     }
 
+
     @Bean
     UiConfiguration uiConfig() {
         return new UiConfiguration("validatorUrl", // url

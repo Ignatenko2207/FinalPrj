@@ -13,7 +13,8 @@ public class LessonServiceImpl implements LessonService{
 
 	@Autowired
 	LessonDAO lessonDAO;
-	
+
+
 	@Override
 	public Lesson saveAndUpdate(Lesson lesson) {
 		return lessonDAO.saveAndFlush(lesson);
@@ -21,7 +22,12 @@ public class LessonServiceImpl implements LessonService{
 
 	@Override
 	public void delete(Long id) {
-		lessonDAO.delete(id);		
+		lessonDAO.delete(id);
+	}
+
+	@Override
+	public Lesson getLesson(Long lessonId) {
+		return lessonDAO.findOne(lessonId);
 	}
 
 	@Override
@@ -31,34 +37,31 @@ public class LessonServiceImpl implements LessonService{
 
 	@Override
 	public Lesson getOneByTeacherAndStartTime(String teacher, Long startTime) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getLessonForTeacherForPeriod(teacher, startTime);
 	}
 
 	@Override
-	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start) {
+		return lessonDAO.getLessonsForGroupForPeriod(group,start);
 	}
 
 	@Override
 	public List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getLessonsForCourseForPeriod(course,start,end);
 	}
 
 	@Override
-	public List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start) {
+		return lessonDAO.getLessonsForTeacherForPeriod(teacher,start);
 	}
-	
+
 	@Override
 	public boolean isUnique(Lesson lesson) {
-		if(lessonDAO.getOneByTeacherAndStartTime(lesson.getTeacher(), lesson.getLessonStart()) != null) {
-			return false;
+		if(lessonDAO.findOne(lesson.getLessonId()) == null) {
+			return true;
 		}
-		return true;
+		return false;
+
 	}
 
 	@Override

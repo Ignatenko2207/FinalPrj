@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class DefaultConfig extends WebMvcConfigurerAdapter {
 
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
