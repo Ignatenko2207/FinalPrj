@@ -2,8 +2,6 @@ package org.itstep.service.impl;
 
 import java.util.List;
 
-import javax.management.Query;
-
 import org.itstep.dao.StudentDAO;
 import org.itstep.dao.pojo.Student;
 import org.itstep.service.StudentSevice;
@@ -36,17 +34,8 @@ public class StudentServiceImpl implements StudentSevice{
 	}
 
 	@Override
-	public List<Student> findAllStudentsByCourse(Integer course){
+	public List<Student> findAllStudentsByCourse(int course){
 		return studentDAO.findAllStudentsByCourse(course);
-	}
-
-	@Override
-	public boolean isUnique(Student student) {
-		if(studentDAO.getOne(student.getLogin())!=null){
-		return false;
-	}
-	return true;
-		
 	}
 	
 }

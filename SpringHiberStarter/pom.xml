@@ -7,13 +7,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>SpringHiberStarter</name>
+  <name>FinalPrjJ16</name>
   <url>http://maven.apache.org</url>
 
   <properties>
 
 		<jdk.version>1.8</jdk.version>
-        <jre.version>1.8.0_144</jre.version>
         
         <product.version>0.1-SNAPSHOT</product.version>
         <lib.property>lib</lib.property>
@@ -48,7 +47,7 @@
                 
         <servlet.version>3.1.0</servlet.version>
         
-        <h2.version>1.4.194</h2.version>
+        <h2.version>1.4.196</h2.version>
         <postgresql.version>42.1.1</postgresql.version>
         
 		<gson.version>2.3.1</gson.version>
@@ -59,7 +58,7 @@
         <swagger.version>2.6.1</swagger.version>
         
         <springockito.version>1.0.9</springockito.version>
-        <mockito.version>2.8.47</mockito.version>
+        <mockito.version>2.10.0</mockito.version>
         <junit.version>4.12</junit.version>
     </properties>
 
@@ -223,14 +222,16 @@
     		<artifactId>jackson-datatype-hibernate5</artifactId>
     		<version>2.8.8</version>
 		</dependency>
-	
+
 		<dependency>
+
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
     <version>42.0.0</version>
 </dependency>
 
 		
+
   		<dependency>
     		<groupId>com.h2database</groupId>
     		<artifactId>h2</artifactId>
@@ -241,7 +242,8 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-            <scope>provided</scope>
+            <scope>system</scope>
+    		<systemPath>${basedir}/lib/lombok.jar</systemPath>
         </dependency>
 
         <dependency>

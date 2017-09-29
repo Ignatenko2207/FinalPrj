@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TeacherDAO extends JpaRepository<Teacher, String>{
 
-
 }

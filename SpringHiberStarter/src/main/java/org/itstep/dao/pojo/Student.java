@@ -33,6 +33,5 @@ public class Student{
 	private String studentGroup;
 	
 	public Student() {
-		
 	}
 }

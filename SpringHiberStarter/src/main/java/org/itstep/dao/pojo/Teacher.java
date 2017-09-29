@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.Spring;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,5 @@ public class Teacher{
 
 	
 	public Teacher() {
-		
 	}
 }
