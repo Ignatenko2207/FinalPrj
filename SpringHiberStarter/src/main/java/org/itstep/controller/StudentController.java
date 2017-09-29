@@ -22,7 +22,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping
 
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
 
@@ -34,7 +34,7 @@ public class StudentController {
     }
 
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping
     public ResponseEntity<Student> updateStudent (@RequestBody Student student){
         if(!studentService.isUnique(student.getLogin())){
             Student studentDB =   studentService.createAndUpdate(student);
