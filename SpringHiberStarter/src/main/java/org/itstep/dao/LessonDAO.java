@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface LessonDAO extends JpaRepository<Lesson,Long> {
 
-
     @Query(value = "SELECT * FROM LESSONS WHERE GROUP_NAME = ?1 AND START_TIME = ?2",nativeQuery = true)
     Lesson getOneByGroupAndStartTime (String group,Long startTime);
 
