@@ -63,4 +63,10 @@ public class LessonServiceImpl implements LessonService{
 		return false;
 
 	}
+
+	@Override
+	public Lesson getLesson(Long lessonId) {
+		
+		return null;
+	}
 }

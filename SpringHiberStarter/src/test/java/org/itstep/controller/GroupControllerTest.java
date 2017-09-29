@@ -1,5 +1,6 @@
 package org.itstep.controller;
 
+
 import static org.junit.Assert.*;
 
 import java.net.URI;
@@ -88,4 +89,3 @@ public class GroupControllerTest {
 	}
 
 }
-
