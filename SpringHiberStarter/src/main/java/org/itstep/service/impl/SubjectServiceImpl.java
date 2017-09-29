@@ -11,13 +11,13 @@ public class SubjectServiceImpl implements SubjectService {
 	SubjectDAO subjectDAO;
 
 	@Override
-	public Subject getSubject(String login) {
-		return subjectDAO.findOne(login);
+	public Subject getSubject(String subjectId) {
+		return subjectDAO.findOne(subjectId);
 	}
 
 	@Override
-	public void deleteSubject(Subject subject) {
-		subjectDAO.delete(subject.getLogin());
+	public void deleteSubject(Subject subjectId) {
+		subjectDAO.delete(subjectId);
 
 	}
 

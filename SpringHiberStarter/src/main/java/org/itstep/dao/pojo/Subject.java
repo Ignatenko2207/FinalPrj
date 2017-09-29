@@ -11,13 +11,18 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
+
 @Table(name = "SUBJECT")
+
 public class Subject {
+	
 @Id
 @Column(name="SUBJECT_ID")
 private String subjectId;
+
 @Column(name="DESCRIPTION_SUBJECT",nullable=false)
 private String descriptionSubject;
+
 public Subject() {
 }
 
