@@ -35,6 +35,9 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class StudentControllerTest {
 	
+	@Autowired
+	Gson gson;	
+	
 	@MockBean
 	StudentService studentService;
 	
@@ -42,8 +45,7 @@ public class StudentControllerTest {
 	TestRestTemplate testRestTemplate;
 	
 	@Test
-	public void createGroupTest(){
-		Gson gson = new Gson();
+	public void createStrudentTest(){
 		Student student = new Student();
 		student.setLogin("login");
 		student.setFullName("Alex Aheyev");
@@ -59,7 +61,7 @@ public class StudentControllerTest {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Student> respEntity = testRestTemplate.exchange(reqEntity, Student.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.CREATED, respEntity.getStatusCode());
 		
 		Mockito.verify(studentService, Mockito.times(1)).createAndUpdateStudent(Mockito.<Student>any());
@@ -72,15 +74,16 @@ public class StudentControllerTest {
 		student.setFullName("Alex Aheyev");
 		student.setPassword("password");
 		student.setStudentGroup("group");
+		String studentJsonObject = gson.toJson(student);
 		Mockito.when(studentService.getStudent(Mockito.anyString())).thenReturn(student);
 		
-		RequestEntity<Student> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Student>(student, HttpMethod.GET, new URI("/student/get-one-student-by-login?studentLogin="+student.getLogin()));
+			reqEntity = new RequestEntity<String>(studentJsonObject, HttpMethod.GET, new URI("/student/get-one-student-by-login?studentLogin="+student.getLogin()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Student> respEntity = testRestTemplate.exchange(reqEntity, Student.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(studentService, Mockito.times(1)).getStudent(Mockito.anyString());
@@ -88,7 +91,6 @@ public class StudentControllerTest {
 	
 	@Test
 	public void updateStudentTest(){
-		Gson gson = new Gson();
 		Student student = new Student();
 		student.setLogin("login");
 		student.setFullName("Alex Aheyev");
@@ -104,10 +106,8 @@ public class StudentControllerTest {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Student> respEntity = testRestTemplate.exchange(reqEntity, Student.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
-		
-		studentService.createAndUpdateStudent(student);
 		Mockito.verify(studentService, Mockito.times(1)).createAndUpdateStudent(student);
 	}
 	
@@ -140,16 +140,16 @@ public class StudentControllerTest {
 		student.setPassword("password");
 		student.setStudentGroup("group");
 		List<Student> students = Arrays.asList(student);
+		String studentsJsonObject = gson.toJson(students);
 		Mockito.when(studentService.findStudentsByGroup(Mockito.anyString())).thenReturn(students);
 		
-		RequestEntity<List<Student>> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<List<Student>>(students, HttpMethod.GET, new URI("/student/get-students-by-group?group="+student.getStudentGroup()));
+			reqEntity = new RequestEntity<String>(studentsJsonObject, HttpMethod.GET, new URI("/student/get-students-by-group?group="+student.getStudentGroup()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<List<Student>> respEntity = testRestTemplate.exchange(reqEntity, new ParameterizedTypeReference<List<Student>>() {
-		});
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(studentService, Mockito.times(1)).findStudentsByGroup(Mockito.anyString());
@@ -168,16 +168,16 @@ public class StudentControllerTest {
 		group.setGroupName("groupName");
 		
 		List<Student> students = Arrays.asList(student);
+		String studentsJsonObject = gson.toJson(students);
 		Mockito.when(studentService.findAllStudentsByCourse(Mockito.anyInt())).thenReturn(students);
 		
-		RequestEntity<List<Student>> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<List<Student>>(students, HttpMethod.GET, new URI("/student/get-students-by-course?course="+group.getCourse()));
+			reqEntity = new RequestEntity<String>(studentsJsonObject, HttpMethod.GET, new URI("/student/get-students-by-course?course="+group.getCourse()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<List<Student>> respEntity = testRestTemplate.exchange(reqEntity, new ParameterizedTypeReference<List<Student>>() {
-		});
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(studentService, Mockito.times(1)).findAllStudentsByCourse(Mockito.anyInt());

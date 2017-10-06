@@ -35,6 +35,9 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GroupControllerTest {
 	
+	@Autowired
+	Gson gson;
+	
 	@MockBean
 	GroupService groupService;
 	
@@ -43,7 +46,6 @@ public class GroupControllerTest {
 	
 	@Test
 	public void createGroupTest(){
-		Gson gson = new Gson();
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
@@ -58,7 +60,7 @@ public class GroupControllerTest {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Group> respEntity = testRestTemplate.exchange(reqEntity, Group.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.CREATED, respEntity.getStatusCode());
 		
 		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());		
@@ -66,7 +68,6 @@ public class GroupControllerTest {
 	
 	@Test
 	public void updateGroupTest(){
-		Gson gson = new Gson();
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
@@ -81,7 +82,7 @@ public class GroupControllerTest {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Group> respEntity = testRestTemplate.exchange(reqEntity, Group.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
@@ -93,35 +94,35 @@ public class GroupControllerTest {
 		group.setGroupName("J16");
 		group.setCourse(2);
 		Mockito.when(groupService.getGroup(Mockito.anyString())).thenReturn(group);
+		String groupJsonObject = gson.toJson(group);
 		
-		RequestEntity<Group> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Group>(group, HttpMethod.GET, new URI("/group/get-group?groupName="+group.getGroupName()));
+			reqEntity = new RequestEntity<String>(groupJsonObject, HttpMethod.GET, new URI("/group/get-group?groupName="+group.getGroupName()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Group> respEntity = testRestTemplate.exchange(reqEntity, Group.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(groupService, Mockito.times(1)).getGroup(Mockito.<String>any());
 	}
-	
 
-	
 	@Test
 	public void deleteGroup(){
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
 		Mockito.doNothing().when(groupService).deleteGroup(Mockito.<String>any());
+		String groupJsonObject = gson.toJson(group);
 		
-		RequestEntity<Group> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Group>(group, HttpMethod.DELETE, new URI("/group?groupName="+group.getGroupName()));
+			reqEntity = new RequestEntity<String>(groupJsonObject, HttpMethod.DELETE, new URI("/group?groupName="+group.getGroupName()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Group> respEntity = testRestTemplate.exchange(reqEntity, Group.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(groupService, Mockito.times(1)).deleteGroup(Mockito.<String>any());
@@ -134,15 +135,15 @@ public class GroupControllerTest {
 		group.setCourse(2);
 		List<Group> groupList = Arrays.asList();
 		Mockito.when(groupService.findAllGroupsByCourse(Mockito.anyInt())).thenReturn(groupList);
+		String groupListJsonObject = gson.toJson(groupList);
 		
-		RequestEntity<List<Group>> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<List<Group>>(groupList, HttpMethod.GET, new URI("/group/get-group-list?course="+group.getCourse()));
+			reqEntity = new RequestEntity<String>(groupListJsonObject, HttpMethod.GET, new URI("/group/get-group-list?course="+group.getCourse()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<List<Group>> respEntity = testRestTemplate.exchange(reqEntity, new ParameterizedTypeReference<List<Group>>() {
-		} );
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(groupService, Mockito.times(1)).findAllGroupsByCourse(Mockito.anyInt());

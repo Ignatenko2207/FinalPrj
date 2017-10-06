@@ -39,6 +39,9 @@ public class TeacherControllerTest {
 	TeacherService teacherService;
 	
 	@Autowired
+	Gson gson;
+	
+	@Autowired
 	TestRestTemplate testRestTemplate;
 	
 
@@ -50,14 +53,15 @@ public class TeacherControllerTest {
 		teacher.setPassword("password");
 		teacher.setSubject("subject");
 		Mockito.when(teacherService.getTeacher(Mockito.anyString())).thenReturn(teacher);
+		String teacherJsonObject= gson.toJson(teacher);
 		
-		RequestEntity<Teacher> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Teacher>(teacher, HttpMethod.GET, new URI("/teacher/get-one-teacher-by-login?teacherLogin="+teacher.getLogin()));
+			reqEntity = new RequestEntity<String>(teacherJsonObject, HttpMethod.GET, new URI("/teacher/get-one-teacher-by-login?teacherLogin="+teacher.getLogin()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Teacher> respEntity = testRestTemplate.exchange(reqEntity, Teacher.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(teacherService, Mockito.times(1)).getTeacher(Mockito.anyString());
@@ -65,7 +69,6 @@ public class TeacherControllerTest {
 
 	@Test
 	public void createTeacherTest() {
-		Gson gson = new Gson();
 		Teacher teacher = new Teacher();
 		teacher.setFullName("Alex Aheyev");
 		teacher.setLogin("login");
@@ -81,7 +84,7 @@ public class TeacherControllerTest {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Teacher> respEntity = testRestTemplate.exchange(reqEntity, Teacher.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(teacherService, Mockito.times(1)).createAndUpdateTeacher(Mockito.<Teacher>any());
@@ -89,7 +92,6 @@ public class TeacherControllerTest {
 
 	@Test
 	public void updateTeacherTest() {
-		Gson gson = new Gson();
 		Teacher teacher = new Teacher();
 		teacher.setFullName("Alex Aheyev");
 		teacher.setLogin("login");
@@ -105,7 +107,7 @@ public class TeacherControllerTest {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Teacher> respEntity = testRestTemplate.exchange(reqEntity, Teacher.class);
+		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
 		
 		Mockito.verify(teacherService, Mockito.times(1)).createAndUpdateTeacher(Mockito.<Teacher>any());

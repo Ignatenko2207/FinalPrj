@@ -24,41 +24,43 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping(value = "/teacher")
 public class TeacherController {
-
+	@Autowired
+	Gson gson;
+	
 	@Autowired
 	TeacherService teacherService;
 
 	@GetMapping(value = "/get-one-teacher-by-login")
-	public ResponseEntity<Teacher> getTeacher(String teacherLogin) {
+	public ResponseEntity<String> getTeacher(String teacherLogin) {
 		Teacher teacherDB = teacherService.getTeacher(teacherLogin);
+		String teacherDBJsonObject = gson.toJson(teacherDB);
 		if (teacherDB != null)
-			return new ResponseEntity<Teacher>(teacherDB, HttpStatus.OK);
+			return new ResponseEntity<String>(teacherDBJsonObject, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping()
-	public ResponseEntity<Teacher> createTeacher(String teacherJsonObject) {
-		Gson gson = new Gson();
+	public ResponseEntity<String> createTeacher(String teacherJsonObject) {
 		Teacher teacher = gson.fromJson(teacherJsonObject, Teacher.class);
-		
 		if (teacherService.isUnique(teacher)) {
 			Teacher teacherDB = teacherService.createAndUpdateTeacher(teacher);
+			String teacherDBJsonObject = gson.toJson(teacherDB);
 			if (teacherDB != null)
-				return new ResponseEntity<Teacher>(teacherDB, HttpStatus.OK);
+				return new ResponseEntity<String>(teacherDBJsonObject, HttpStatus.OK);
 		}
-		return new ResponseEntity<Teacher>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
 
 	@PutMapping()
-	public ResponseEntity<Teacher> updateTeacher(String teacherJsonObject) {
-		Gson gson = new Gson();
+	public ResponseEntity<String> updateTeacher(String teacherJsonObject) {
 		Teacher teacher = gson.fromJson(teacherJsonObject, Teacher.class);
 		
 		if (!teacherService.isUnique(teacher)) {
 			Teacher teacherDB = teacherService.createAndUpdateTeacher(teacher);
-			return new ResponseEntity<Teacher>(teacherDB, HttpStatus.OK);
+			String teacherDBJsonObject = gson.toJson(teacherDB);
+			return new ResponseEntity<String>(teacherDBJsonObject, HttpStatus.OK);
 		}
-		return new ResponseEntity<Teacher>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
 
 	@DeleteMapping

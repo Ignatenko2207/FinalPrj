@@ -29,50 +29,55 @@ import lombok.extern.slf4j.Slf4j;
 public class GroupController {
 
 	@Autowired
+	Gson gson;
+	
+	@Autowired
 	GroupService groupService;
 
 
 	@PostMapping()
-	public ResponseEntity<Group> createGroup(@RequestBody String groupJsonObject) {
-		Gson gson = new Gson();
+	public ResponseEntity<String> createGroup(@RequestBody String groupJsonObject) {
 		Group group = gson.fromJson(groupJsonObject, Group.class);
 		if (groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
+			String groupDBJsonObject = gson.toJson(groupDB);
 			if (groupDB == null) {
-				return new ResponseEntity<Group>(HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 			}
-			return new ResponseEntity<Group>(groupDB, HttpStatus.CREATED);
+			return new ResponseEntity<String>(groupDBJsonObject, HttpStatus.CREATED);
 		}
-		return new ResponseEntity<Group>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping()
-	public ResponseEntity<Group> updateGroup(@RequestBody String groupJsonObject) {
-		Gson gson = new Gson();
+	public ResponseEntity<String> updateGroup(@RequestBody String groupJsonObject) {
 		Group group = gson.fromJson(groupJsonObject, Group.class);
 		if (!groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
+			String groupDBJsonObject = gson.toJson(groupDB);
 			if (groupDB == null) {
 				return new ResponseEntity(HttpStatus.BAD_REQUEST);
 			}
-			return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
+			return new ResponseEntity<String>(groupDBJsonObject, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping(value = "/get-group")
-	public ResponseEntity<Group> getOneGroup(@RequestParam(required = true) String groupName) {
+	public ResponseEntity<String> getOneGroup(@RequestParam(required = true) String groupName) {
 		Group groupDB = groupService.getGroup(groupName);
+		String groupDBJsonObject = gson.toJson(groupDB);
 		if (groupDB == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Group>(groupDB, HttpStatus.OK);
+		return new ResponseEntity<String>(groupDBJsonObject, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/get-group-list")
-	public ResponseEntity<List<Group>> getGroupList(@RequestParam(required = true) int course) {
+	@GetMapping(value = "/get-group-list-by-course")
+	public ResponseEntity<String> getGroupList(@RequestParam(required = true) int course) {
 		List<Group> groupList = groupService.findAllGroupsByCourse(course);
-		return new ResponseEntity<List<Group>>(groupList, HttpStatus.OK);
+		String groupListJsonObject = gson.toJson(groupList);
+		return new ResponseEntity<String>(groupListJsonObject, HttpStatus.OK);
 	}
 
 	@DeleteMapping

@@ -28,35 +28,39 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 	
 	@Autowired
+	Gson gson;
+	
+	@Autowired
 	StudentService studentService;
 	
 	@PostMapping()
-	public ResponseEntity<Student> createStudent(@RequestBody String studentJsonObject) {
-		Gson gson = new Gson();
+	public ResponseEntity<String> createStudent(@RequestBody String studentJsonObject) {
 		Student student = gson.fromJson(studentJsonObject, Student.class);
 		if (studentService.isUnique(student)) {
 			Student studentDB = studentService.createAndUpdateStudent(student);
-			return new ResponseEntity<Student>(studentDB, HttpStatus.CREATED);
+			String studentDBJsonObject = gson.toJson(studentDB);
+			return new ResponseEntity<String>(studentDBJsonObject, HttpStatus.CREATED);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	@GetMapping(value = "/get-one-student-by-login")
-	public ResponseEntity<Student> getStudent(String studentLogin) {
+	public ResponseEntity<String> getStudent(String studentLogin) {
 		Student studentDB = studentService.getStudent(studentLogin);
+		String studentDBJsonObject = gson.toJson(studentDB);
 		if (studentDB != null)
-			return new ResponseEntity<Student>(studentDB, HttpStatus.OK);
+			return new ResponseEntity<String>(studentDBJsonObject, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
 	
 	@PutMapping()
-	public ResponseEntity<Student> updateStudent(@RequestBody String studentJsonObject){
-		Gson gson = new Gson();
+	public ResponseEntity<String> updateStudent(@RequestBody String studentJsonObject){
 		Student student = gson.fromJson(studentJsonObject, Student.class);
 		if(!studentService.isUnique(student)){
 			Student studentDB = studentService.createAndUpdateStudent(student);
-			return new ResponseEntity<Student>(studentDB, HttpStatus.OK);
+			String studentDBJsonObject = gson.toJson(studentDB);
+			return new ResponseEntity<String>(studentDBJsonObject, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
@@ -73,18 +77,20 @@ public class StudentController {
 	}
 	
 	@GetMapping(value = "/get-students-by-group")
-	public ResponseEntity<List<Student> > getStudentsByGroup(String group) {
+	public ResponseEntity<String> getStudentsByGroup(String group) {
 		List<Student>  studentsDB = studentService.findStudentsByGroup(group);
+		String studentsDBJsonObject = gson.toJson(studentsDB);
 		if (studentsDB != null)
-			return new ResponseEntity<List<Student> >(studentsDB, HttpStatus.OK);
+			return new ResponseEntity<String>(studentsDBJsonObject, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping(value = "/get-students-by-course")
-	public ResponseEntity<List<Student> > getStudentsByCourse(Integer course) {
+	public ResponseEntity<String > getStudentsByCourse(Integer course) {
 		List<Student> studentsDB = studentService.findAllStudentsByCourse(course);
+		String studentsDBJsonObject = gson.toJson(studentsDB);
 		if (studentsDB != null)
-			return new ResponseEntity<List<Student> >(studentsDB, HttpStatus.OK);
+			return new ResponseEntity<String >(studentsDBJsonObject, HttpStatus.OK);
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 	
