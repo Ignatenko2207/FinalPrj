@@ -58,6 +58,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		Mockito.when(lessonService.saveAndUpdate(Mockito.<Lesson>any())).thenReturn(null);
 		Mockito.when(lessonService.isUnique(Mockito.<Lesson>any())).thenReturn(true);
 		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(null);
@@ -85,6 +86,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		Mockito.when(lessonService.saveAndUpdate(Mockito.<Lesson>any())).thenReturn(null);
 		Mockito.when(lessonService.isUnique(Mockito.<Lesson>any())).thenReturn(false);
 		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(null);
@@ -111,6 +113,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(lesson);
 
 		RequestEntity<Lesson> reqEntity = null;
@@ -135,6 +138,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		Mockito.doNothing().when(lessonService).delete(Mockito.<Long>any());
 		
 		RequestEntity<Lesson> reqEntity = null;
@@ -160,6 +164,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		List<Lesson> lessons = Arrays.asList(lesson);
 		Mockito.when(lessonService.getLessonsByGroupAndStartTime(Mockito.<String>any(), Mockito.<Long>any())).thenReturn(lessons);
 		
@@ -186,6 +191,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("TheTeacher");
+		lesson.setDescription(" ");
 		List<Lesson> lessons = Arrays.asList(lesson);
 		Mockito.when(lessonService.getLessonsByTeacherAndStartTime(Mockito.anyString(), Mockito.anyLong())).thenReturn(lessons);
 		
@@ -208,10 +214,11 @@ public class LessonControllerTest {
 		lesson.setLessonId(1l);
 		lesson.setGroup("group");
 		lesson.setLength(22l);
-		lesson.setLessonStart(2l);
+		lesson.setLessonStart(0l);
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		List<Lesson> lessons = Arrays.asList(lesson);
 		Mockito.when(lessonService.getLessonsForGroupForPeriod(Mockito.<String>any(), Mockito.<Long>any(), Mockito.<Long>any())).thenReturn(lessons);
 		
@@ -239,6 +246,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
+		lesson.setDescription(" ");
 		List<Lesson> lessons = Arrays.asList(lesson);
 		Group group = new Group();
 		group.setCourse(1);
@@ -270,6 +278,7 @@ public class LessonControllerTest {
 		lesson.setRoom("room");
 		lesson.setSubject("subject");
 		lesson.setTeacher("TheTeacher");
+		lesson.setDescription(" ");
 		List<Lesson> lessons = Arrays.asList(lesson);
 		Mockito.when(lessonService.getLessonsForTeacherForPeriod(Mockito.<String>any(), Mockito.<Long>any(), Mockito.<Long>any())).thenReturn(lessons);
 		

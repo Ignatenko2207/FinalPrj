@@ -37,6 +37,9 @@ public class Lesson implements Serializable  {
 	private String room;
 	@Column(name = "SUBJECT", nullable = false)
 	private String subject;
+	@Column(name="DESCRIPTION", nullable = false)
+	private String description;
+	
 	public Lesson() {
 	}
 	
