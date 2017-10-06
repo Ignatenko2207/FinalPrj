@@ -108,7 +108,7 @@ public class StudentControllerTest {
 		}
 		ResponseEntity<String> respEntity = testRestTemplate.exchange(reqEntity, String.class);
 		assertEquals(HttpStatus.OK, respEntity.getStatusCode());
-		Mockito.verify(studentService, Mockito.times(1)).createAndUpdateStudent(student);
+		Mockito.verify(studentService, Mockito.times(1)).createAndUpdateStudent(Mockito.<Student>any());
 	}
 	
 	@Test

@@ -134,12 +134,11 @@ public class GroupControllerTest {
 		group.setGroupName("J16");
 		group.setCourse(2);
 		List<Group> groupList = Arrays.asList();
-		Mockito.when(groupService.findAllGroupsByCourse(Mockito.anyInt())).thenReturn(groupList);
 		String groupListJsonObject = gson.toJson(groupList);
-		
+		Mockito.when(groupService.findAllGroupsByCourse(Mockito.anyInt())).thenReturn(groupList);
 		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<String>(groupListJsonObject, HttpMethod.GET, new URI("/group/get-group-list?course="+group.getCourse()));
+			reqEntity = new RequestEntity<String>(groupListJsonObject, HttpMethod.GET, new URI("/group/get-group-list-by-course?course="+group.getCourse()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
