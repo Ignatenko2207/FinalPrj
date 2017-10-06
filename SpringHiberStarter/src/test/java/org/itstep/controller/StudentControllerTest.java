@@ -26,6 +26,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -41,17 +43,19 @@ public class StudentControllerTest {
 	
 	@Test
 	public void createGroupTest(){
+		Gson gson = new Gson();
 		Student student = new Student();
 		student.setLogin("login");
 		student.setFullName("Alex Aheyev");
 		student.setPassword("password");
 		student.setStudentGroup("group");
+		String studentJsonObject = gson.toJson(student);
 		Mockito.when(studentService.isUnique(Mockito.<Student>any())).thenReturn(true);
 		Mockito.when(studentService.createAndUpdateStudent(Mockito.<Student>any())).thenReturn(student);
 		
-		RequestEntity<Student> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Student>(student, HttpMethod.POST, new URI("/student"));
+			reqEntity = new RequestEntity<String>(studentJsonObject, HttpMethod.POST, new URI("/student"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -84,17 +88,19 @@ public class StudentControllerTest {
 	
 	@Test
 	public void updateStudentTest(){
+		Gson gson = new Gson();
 		Student student = new Student();
 		student.setLogin("login");
 		student.setFullName("Alex Aheyev");
 		student.setPassword("password");
 		student.setStudentGroup("group");
+		String studentJsonObject = gson.toJson(student);
 		Mockito.when(studentService.isUnique(Mockito.<Student>any())).thenReturn(false);
 		Mockito.when(studentService.createAndUpdateStudent(Mockito.<Student>any())).thenReturn(student);
 		
-		RequestEntity<Student> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Student>(student, HttpMethod.PUT, new URI("/student"));
+			reqEntity = new RequestEntity<String>(studentJsonObject, HttpMethod.PUT, new URI("/student"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}

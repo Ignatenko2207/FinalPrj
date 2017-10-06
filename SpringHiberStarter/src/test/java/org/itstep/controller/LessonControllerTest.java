@@ -28,6 +28,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.google.gson.Gson;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -50,6 +52,7 @@ public class LessonControllerTest {
 
 	@Test
 	public void testCreateLesson() {
+		Gson gson = new Gson();
 		Lesson lesson = new Lesson();
 		lesson.setLessonId(1l);
 		lesson.setGroup("group");
@@ -59,13 +62,14 @@ public class LessonControllerTest {
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
 		lesson.setDescription(" ");
+		String lessonJsonObject = gson.toJson(lesson);
 		Mockito.when(lessonService.saveAndUpdate(Mockito.<Lesson>any())).thenReturn(null);
 		Mockito.when(lessonService.isUnique(Mockito.<Lesson>any())).thenReturn(true);
 		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(null);
 		
-		RequestEntity<Lesson> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Lesson>(lesson, HttpMethod.POST, new URI("/lesson"));
+			reqEntity = new RequestEntity<String>(lessonJsonObject, HttpMethod.POST, new URI("/lesson"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +82,7 @@ public class LessonControllerTest {
 	
 	@Test
 	public void testUpdateLesson() {
+		Gson gson = new Gson();
 		Lesson lesson = new Lesson();
 		lesson.setLessonId(1l);
 		lesson.setGroup("group");
@@ -87,13 +92,14 @@ public class LessonControllerTest {
 		lesson.setSubject("subject");
 		lesson.setTeacher("The Teacher");
 		lesson.setDescription(" ");
+		String lessonJsonObject = gson.toJson(lesson);
 		Mockito.when(lessonService.saveAndUpdate(Mockito.<Lesson>any())).thenReturn(null);
 		Mockito.when(lessonService.isUnique(Mockito.<Lesson>any())).thenReturn(false);
 		Mockito.when(lessonService.getLesson(Mockito.<Long>any())).thenReturn(null);
 		
-		RequestEntity<Lesson> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Lesson>(lesson, HttpMethod.PUT, new URI("/lesson"));
+			reqEntity = new RequestEntity<String>(lessonJsonObject, HttpMethod.PUT, new URI("/lesson"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}

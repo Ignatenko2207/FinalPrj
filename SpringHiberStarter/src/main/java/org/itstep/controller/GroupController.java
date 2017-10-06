@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,7 +33,9 @@ public class GroupController {
 
 
 	@PostMapping()
-	public ResponseEntity<Group> createGroup(@RequestBody Group group) {
+	public ResponseEntity<Group> createGroup(@RequestBody String groupJsonObject) {
+		Gson gson = new Gson();
+		Group group = gson.fromJson(groupJsonObject, Group.class);
 		if (groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
 			if (groupDB == null) {
@@ -43,7 +47,9 @@ public class GroupController {
 	}
 
 	@PutMapping()
-	public ResponseEntity<Group> updateGroup(@RequestBody Group group) {
+	public ResponseEntity<Group> updateGroup(@RequestBody String groupJsonObject) {
+		Gson gson = new Gson();
+		Group group = gson.fromJson(groupJsonObject, Group.class);
 		if (!groupService.isUnique(group)) {
 			Group groupDB = groupService.createAndUpdateGroup(group);
 			if (groupDB == null) {

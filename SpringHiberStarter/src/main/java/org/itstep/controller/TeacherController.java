@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -35,7 +37,9 @@ public class TeacherController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Teacher> createTeacher(Teacher teacher) {
+	public ResponseEntity<Teacher> createTeacher(String teacherJsonObject) {
+		Gson gson = new Gson();
+		Teacher teacher = gson.fromJson(teacherJsonObject, Teacher.class);
 		
 		if (teacherService.isUnique(teacher)) {
 			Teacher teacherDB = teacherService.createAndUpdateTeacher(teacher);
@@ -46,7 +50,10 @@ public class TeacherController {
 	}
 
 	@PutMapping()
-	public ResponseEntity<Teacher> updateTeacher(Teacher teacher) {
+	public ResponseEntity<Teacher> updateTeacher(String teacherJsonObject) {
+		Gson gson = new Gson();
+		Teacher teacher = gson.fromJson(teacherJsonObject, Teacher.class);
+		
 		if (!teacherService.isUnique(teacher)) {
 			Teacher teacherDB = teacherService.createAndUpdateTeacher(teacher);
 			return new ResponseEntity<Teacher>(teacherDB, HttpStatus.OK);

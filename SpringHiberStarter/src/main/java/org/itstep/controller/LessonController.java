@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -40,7 +42,9 @@ public class LessonController {
 
 
 	@PostMapping()
-	public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson) {
+	public ResponseEntity<Lesson> createLesson(@RequestBody String lessonJsonObject) {
+		Gson gson = new Gson();
+		Lesson lesson = gson.fromJson(lessonJsonObject, Lesson.class);
 		if (lessonService.isUnique(lesson)) {
 			Lesson lessonDB = lessonService.saveAndUpdate(lesson);
 			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.CREATED);
@@ -50,7 +54,9 @@ public class LessonController {
 	
 
 	@PutMapping()
-	public ResponseEntity<Lesson> updateLesson(@RequestBody Lesson lesson) {
+	public ResponseEntity<Lesson> updateLesson(@RequestBody String lessonJsonObject) {
+		Gson gson = new Gson();
+		Lesson lesson = gson.fromJson(lessonJsonObject, Lesson.class);
 		if (!lessonService.isUnique(lesson)) {
 			Lesson lessonDB = lessonService.saveAndUpdate(lesson);
 			return new ResponseEntity<Lesson>(lessonDB, HttpStatus.OK);

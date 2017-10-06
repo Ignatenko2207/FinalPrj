@@ -24,7 +24,10 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
+import springfox.documentation.spring.web.json.Json;
 
 
 @Slf4j
@@ -62,17 +65,19 @@ public class TeacherControllerTest {
 
 	@Test
 	public void createTeacherTest() {
+		Gson gson = new Gson();
 		Teacher teacher = new Teacher();
 		teacher.setFullName("Alex Aheyev");
 		teacher.setLogin("login");
 		teacher.setPassword("password");
 		teacher.setSubject("subject");
+		String teacherJsonObject = gson.toJson(teacher);
 		Mockito.when(teacherService.isUnique(Mockito.<Teacher>any())).thenReturn(true);
 		Mockito.when(teacherService.createAndUpdateTeacher(Mockito.<Teacher>any())).thenReturn(teacher);
 		
-		RequestEntity<Teacher> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Teacher>(teacher, HttpMethod.POST, new URI("/teacher"));
+			reqEntity = new RequestEntity<String>(teacherJsonObject, HttpMethod.POST, new URI("/teacher"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -84,17 +89,19 @@ public class TeacherControllerTest {
 
 	@Test
 	public void updateTeacherTest() {
+		Gson gson = new Gson();
 		Teacher teacher = new Teacher();
 		teacher.setFullName("Alex Aheyev");
 		teacher.setLogin("login");
 		teacher.setPassword("password");
 		teacher.setSubject("subject");
+		String teacherJsonObject = gson.toJson(teacher);
 		Mockito.when(teacherService.isUnique(Mockito.<Teacher>any())).thenReturn(false);
 		Mockito.when(teacherService.createAndUpdateTeacher(Mockito.<Teacher>any())).thenReturn(teacher);
 		
-		RequestEntity<Teacher> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Teacher>(teacher, HttpMethod.PUT, new URI("/teacher"));
+			reqEntity = new RequestEntity<String>(teacherJsonObject, HttpMethod.PUT, new URI("/teacher"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}

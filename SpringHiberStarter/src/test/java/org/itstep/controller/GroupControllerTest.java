@@ -26,6 +26,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -41,17 +43,18 @@ public class GroupControllerTest {
 	
 	@Test
 	public void createGroupTest(){
-
+		Gson gson = new Gson();
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
+		String groupJsonObject = gson.toJson(group);
 		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
 		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(true);
 		Mockito.when(groupService.getGroup(Mockito.<String>any())).thenReturn(null);
 		
-		RequestEntity<Group> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Group>(group, HttpMethod.POST, new URI("/group"));
+			reqEntity = new RequestEntity<String>(groupJsonObject, HttpMethod.POST, new URI("/group"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -63,16 +66,18 @@ public class GroupControllerTest {
 	
 	@Test
 	public void updateGroupTest(){
+		Gson gson = new Gson();
 		Group group = new Group();
 		group.setGroupName("J16");
 		group.setCourse(2);
+		String groupJsonObject = gson.toJson(group);
 		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
 		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(false);
 		Mockito.when(groupService.getGroup(Mockito.<String>any())).thenReturn(group);
 		
-		RequestEntity<Group> reqEntity = null;
+		RequestEntity<String> reqEntity = null;
 		try {
-			reqEntity = new RequestEntity<Group>(group, HttpMethod.PUT, new URI("/group"));
+			reqEntity = new RequestEntity<String>(groupJsonObject, HttpMethod.PUT, new URI("/group"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
